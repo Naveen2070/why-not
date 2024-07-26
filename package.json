@@ -2,12 +2,13 @@
   "name": "why-not",
   "version": "0.1.0",
   "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build": "tsc"
-  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build": "tsc",
+    "start": "npx ts-node src/example.ts"
+  },
   "author": "naveen_r_sam",
   "license": "MIT",
   "devDependencies": {
