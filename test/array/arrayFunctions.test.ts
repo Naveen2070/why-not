@@ -7,8 +7,8 @@ import {
   pluck,
   reproduceTo,
   toUnique,
-} from '../src/array/arrayMutation';
-import { ArrayMutator } from '../src/mutators/main';
+} from '../../src/array/arrayMutation';
+import { ArrayMutator } from '../../src/mutators/main';
 
 describe('ArrayMutator', () => {
   const numbers = [1, 2, 2, 3, 1];
