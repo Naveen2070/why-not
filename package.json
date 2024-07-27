@@ -1,22 +1,35 @@
 {
   "name": "why-not",
   "version": "0.1.0",
-  "description": "",
+  "description": "A utility library designed to reduce redundant code and improve development efficiency by providing a set of reusable methods. Beyond array manipulation, this package includes utilities for math operations, date handling, string manipulation, and more. Streamline your code and enhance readability with this comprehensive toolkit.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build": "tsc",
-    "start": "npx ts-node src/example.ts"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
+    "coverage": "jest --coverage",
+    "build": "tsc"
   },
   "author": "naveen_r_sam",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "files": [
     "dist/**/*"
+  ],
+  "keywords": [
+    "utility",
+    "helper",
+    "array",
+    "math",
+    "date",
+    "string"
   ]
 }
