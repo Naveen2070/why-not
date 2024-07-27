@@ -1,7 +1,5 @@
 # Why Not
 
-# Notice: Still not deployed as a npm package. In development stage
-
 **Why Not** is a utility library designed to streamline development by providing a collection of reusable methods. It helps reduce redundant code and enhance code readability. This library offers utilities not only for array manipulation but also for operations involving math, dates, strings, and more.
 
 ## Features
