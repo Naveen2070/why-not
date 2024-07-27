@@ -42,9 +42,24 @@ function reproduceTo<T extends Primitive, U extends Record<string, Primitive>>(
   }
 }
 
-export const ArrayMutations = {
-  toUnique,
-  reproduceTo,
-};
+export class ArrayMutator<T extends Primitive | Record<string, Primitive>> {
+  private array: T[];
+
+  constructor(array: T[]) {
+    this.array = array;
+  }
+
+  toUnique(): T[] {
+    return toUnique(this.array);
+  }
+
+  reproduceTo(
+    value: Primitive,
+    operation: (a: Primitive, b: Primitive) => Primitive,
+    key?: (keyof T & string) | undefined
+  ) {
+    return reproduceTo(this.array, value, operation, key);
+  }
+}
 
 export { toUnique, reproduceTo };

@@ -1,1 +1,1 @@
-export { ArrayMutations, toUnique, reproduceTo } from './array/arrayMutation';
+export { ArrayMutator, toUnique, reproduceTo } from './array/arrayMutation';
