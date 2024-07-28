@@ -9,4 +9,5 @@ export {
   mode,
   standardDeviation,
   range,
+  roundTo,
 } from './mathMutation';

@@ -24,6 +24,7 @@ import {
   mode,
   standardDeviation,
   range,
+  roundTo,
 } from './math/index';
 
 //Mutators Imports
@@ -54,4 +55,5 @@ export {
   mode,
   standardDeviation,
   range,
+  roundTo,
 };

@@ -38,12 +38,13 @@ function gcd(a: number, b: number): number {
  * @throws {TypeError} If the result of the LCM calculation is NaN.
  */
 function lcm(a: number, b: number): number {
-  if (Number.isNaN(a) || Number.isNaN(b)) {
+  if (typeof a !== 'number' || typeof b !== 'number') {
     throw new TypeError('a and b must be numbers');
   }
   if (!Number.isFinite(a) || !Number.isFinite(b)) {
     throw new RangeError('a and b must be finite numbers');
   }
+
   if (a === 0 || b === 0) {
     return 0;
   }
@@ -213,7 +214,7 @@ function standardDeviation(array: number[] | null | undefined): number {
   });
 
   const avgSquareDiff = mean(squareDiffs);
-  return Math.sqrt(avgSquareDiff) / 100;
+  return roundTo(Math.sqrt(avgSquareDiff), 4);
 }
 
 /**
@@ -237,6 +238,31 @@ function range(array: number[] | null | undefined): number {
     throw new Error('array must contain numbers');
   }
   return max - min;
+}
+
+/**
+ * Rounds a number to a specified decimal place.
+ *
+ * @param {number | null | undefined} value - The number to be rounded.
+ * @param {number | null | undefined} decimalPlaces - The number of decimal places to round to.
+ * @throws {TypeError} If value or decimalPlaces is null or undefined.
+ * @return {number} The rounded number.
+ */
+function roundTo(
+  value: number | null | undefined,
+  decimalPlaces: number | null | undefined
+): number {
+  if (
+    value === null ||
+    value === undefined ||
+    decimalPlaces === null ||
+    decimalPlaces === undefined
+  ) {
+    throw new TypeError('value and decimalPlaces must be non-null numbers');
+  }
+
+  const factor = Math.pow(10, decimalPlaces);
+  return Math.round(value * factor) / factor;
 }
 
 /**
@@ -356,6 +382,17 @@ class MathMutator {
   range(): number {
     return range(this.array);
   }
+
+  /**
+   * Rounds a number to a specified decimal place.
+   *
+   * @param {number} value - The number to be rounded.
+   * @param {number} decimalPlaces - The number of decimal places to round to.
+   * @return {number} The rounded number.
+   */
+  roundTo(number: number, decimalPlaces: number): number {
+    return roundTo(number, decimalPlaces);
+  }
 }
 
 export {
@@ -370,4 +407,5 @@ export {
   mode,
   standardDeviation,
   range,
+  roundTo,
 };
