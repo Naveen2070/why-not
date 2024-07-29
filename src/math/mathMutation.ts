@@ -49,24 +49,22 @@ function lcm(a: number, b: number): number {
     return 0;
   }
   const result = (a * b) / gcd(a, b);
-  if (Number.isNaN(result)) {
-    throw new TypeError('Result of lcm calculation is NaN');
-  }
   return result;
 }
 
 /**
  * Checks if a number is prime.
  *
- * @param {number} n - The number to check.
+ * @param {number|null|undefined} n - The number to check.
  * @return {boolean} True if the number is prime, false otherwise.
  * @throws {TypeError} If n is not a number.
  * @throws {RangeError} If n is not finite.
  */
-function isPrime(n: number): boolean {
-  if (typeof n !== 'number') {
+function isPrime(n: number | null | undefined): boolean {
+  if (n === null || n === undefined || typeof n !== 'number') {
     throw new TypeError('n must be a number');
   }
+
   if (!Number.isFinite(n)) {
     throw new RangeError('n must be finite');
   }
@@ -74,7 +72,7 @@ function isPrime(n: number): boolean {
   if (n <= 3) return true;
   if (n % 2 === 0 || n % 3 === 0) return false;
   for (let i = 5; i * i <= n; i += 6) {
-    if (n % i === 0 || n % (i + 2) === 0) return false;
+    return n % i === 0 || n % (i + 2) === 0 ? false : true;
   }
   return true;
 }
@@ -152,10 +150,8 @@ function median(array: NumArray): number {
     if (median1 !== undefined && median2 !== undefined) {
       return (median1 + median2) / 2;
     }
-  } else if (sortedArray[middle] !== undefined) {
-    return sortedArray[middle];
   }
-  throw new Error('Invalid array');
+  return sortedArray[middle];
 }
 
 /**
@@ -232,11 +228,13 @@ function range(array: number[] | null | undefined): number {
   if (array.length === 0) {
     throw new TypeError('array must not be empty');
   }
+  const isNumberArray = array.every((num) => typeof num === 'number');
+  if (!isNumberArray) {
+    throw new TypeError('array must contain numbers');
+  }
+
   const min = Math.min(...array);
   const max = Math.max(...array);
-  if (min === undefined || max === undefined) {
-    throw new Error('array must contain numbers');
-  }
   return max - min;
 }
 

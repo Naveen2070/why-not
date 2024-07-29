@@ -28,6 +28,10 @@ describe('MathMutator', () => {
     expect(() => mathMutNumbers.gcd(8, '12')).toThrow(TypeError);
   });
 
+  test('gcd show return 0 for gcd of 0 and 0', () => {
+    expect(mathMutNumbers.gcd(0, 0)).toBe(0);
+  });
+
   test('gcd should throw RangeError for non-finite numbers', () => {
     expect(() => mathMutNumbers.gcd(Infinity, 12)).toThrow(RangeError);
     expect(() => mathMutNumbers.gcd(8, NaN)).toThrow(RangeError);
@@ -42,6 +46,10 @@ describe('MathMutator', () => {
     expect(() => mathMutNumbers.lcm(4, '5')).toThrow(TypeError);
   });
 
+  test('lcm show return 0 for lcm of 0 and 0', () => {
+    expect(mathMutNumbers.lcm(0, 0)).toBe(0);
+  });
+
   test('lcm should throw RangeError for non-finite numbers', () => {
     expect(() => mathMutNumbers.lcm(Infinity, 5)).toThrow(RangeError);
     expect(() => mathMutNumbers.lcm(4, NaN)).toThrow(RangeError);
@@ -52,6 +60,11 @@ describe('MathMutator', () => {
     expect(mathMutNumbers.isPrime(4)).toBe(false);
   });
 
+  test('isPrime should return false for n <= 1', () => {
+    expect(mathMutNumbers.isPrime(0)).toBe(false);
+    expect(mathMutNumbers.isPrime(1)).toBe(false);
+  });
+
   test('isPrime should throw TypeError for non-number inputs', () => {
     expect(() => mathMutNumbers.isPrime('2')).toThrow(TypeError);
   });
@@ -60,8 +73,21 @@ describe('MathMutator', () => {
     expect(() => mathMutNumbers.isPrime(Infinity)).toThrow(RangeError);
   });
 
+  test('isPrime should return false if n is divisible by i or i + 2', () => {
+    expect(isPrime(25)).toBe(false);
+  });
+
+  test('isPrime should correctly identify prime numbers using 6k ± 1 rule', () => {
+    expect(mathMutNumbers.isPrime(23)).toBe(true);
+    expect(mathMutNumbers.isPrime(25)).toBe(false);
+  });
+
   test('factorial should calculate the factorial of a number', () => {
     expect(mathMutNumbers.factorial(5)).toBe(120);
+  });
+
+  test('factorial should return 1 for factorial of 0', () => {
+    expect(mathMutNumbers.factorial(0)).toBe(1);
   });
 
   test('factorial should throw TypeError for non-integer or negative inputs', () => {
@@ -97,6 +123,13 @@ describe('MathMutator', () => {
     expect(() => emptyMathMut.median()).toThrow(TypeError);
   });
 
+  test('median should calculate the median for even-length arrays', () => {
+    const mathMutEven = new MathMutator([1, 3, 5, 7]);
+    const mathMutEven2 = new MathMutator([2, 4, 6, 8]);
+    expect(mathMutEven.median()).toBe(4);
+    expect(mathMutEven2.median()).toBe(5);
+  });
+
   test('mode should find the mode(s) of the array', () => {
     expect(mathMutNumbers.mode()).toEqual([1, 2]);
   });
@@ -115,6 +148,11 @@ describe('MathMutator', () => {
     expect(() => emptyMathMut.standardDeviation()).toThrow(TypeError);
   });
 
+  test('standardDeviation should throw TypeError for non-numeric array', () => {
+    const emptyMathMut = new MathMutator([1, 2, '2', 3, '1', 4, '5']);
+    expect(() => emptyMathMut.standardDeviation()).toThrow(TypeError);
+  });
+
   test('range should calculate the range of the array', () => {
     expect(mathMutNumbers.range()).toBe(4);
   });
@@ -122,6 +160,16 @@ describe('MathMutator', () => {
   test('range should throw TypeError for empty array', () => {
     const emptyMathMut = new MathMutator([]);
     expect(() => emptyMathMut.range()).toThrow(TypeError);
+  });
+
+  test('range should throw TypeError for non-numeric array', () => {
+    const nonNumMathMut = new MathMutator([1, 2, '2', 3, '1', 4, '5']);
+    expect(() => nonNumMathMut.range()).toThrow(TypeError);
+  });
+
+  test('range should throw TypeError for non array input', () => {
+    const nonNumMathMut = new MathMutator(1);
+    expect(() => nonNumMathMut.range()).toThrow(TypeError);
   });
 
   test('roundTo should round a number to a specified decimal place', () => {
@@ -147,6 +195,10 @@ describe('Standalone Functions', () => {
     expect(() => gcd(8, '12')).toThrow(TypeError);
   });
 
+  test('gcd show return 0 for gcd of 0 and 0', () => {
+    expect(gcd(0, 0)).toBe(0);
+  });
+
   test('gcd should throw RangeError for non-finite numbers', () => {
     expect(() => gcd(Infinity, 12)).toThrow(RangeError);
     expect(() => gcd(8, NaN)).toThrow(RangeError);
@@ -161,6 +213,10 @@ describe('Standalone Functions', () => {
     expect(() => lcm(4, '5')).toThrow(TypeError);
   });
 
+  test('lcm show return 0 for lcm of 0 and 0', () => {
+    expect(lcm(0, 0)).toBe(0);
+  });
+
   test('lcm should throw RangeError for non-finite numbers', () => {
     expect(() => lcm(Infinity, 5)).toThrow(RangeError);
     expect(() => lcm(4, NaN)).toThrow(RangeError);
@@ -171,6 +227,11 @@ describe('Standalone Functions', () => {
     expect(isPrime(4)).toBe(false);
   });
 
+  test('isPrime should return false for n <= 1', () => {
+    expect(isPrime(0)).toBe(false);
+    expect(isPrime(1)).toBe(false);
+  });
+
   test('isPrime should throw TypeError for non-number inputs', () => {
     expect(() => isPrime('2')).toThrow(TypeError);
   });
@@ -179,8 +240,23 @@ describe('Standalone Functions', () => {
     expect(() => isPrime(Infinity)).toThrow(RangeError);
   });
 
+  test('isPrime should return false if n is divisible by i or i + 2', () => {
+    expect(isPrime(25)).toBe(false);
+    expect(isPrime(27)).toBe(false);
+    expect(isPrime(28)).toBe(false);
+  });
+
+  test('isPrime should correctly identify prime numbers using 6k ± 1 rule', () => {
+    expect(isPrime(23)).toBe(true);
+    expect(isPrime(25)).toBe(false);
+  });
+
   test('factorial should calculate the factorial of a number', () => {
     expect(factorial(5)).toBe(120);
+  });
+
+  test('factorial should return 1 for factorial of 0', () => {
+    expect(factorial(0)).toBe(1);
   });
 
   test('factorial should throw TypeError for non-integer or negative inputs', () => {
@@ -198,7 +274,7 @@ describe('Standalone Functions', () => {
     expect(() => fibonacci(-1)).toThrow(TypeError);
   });
 
-  test('mean should calculate the mean of an array', () => {
+  test('mean should calculate the mean of the array', () => {
     expect(mean(numbers)).toBeCloseTo(2.571, 3);
   });
 
@@ -206,7 +282,7 @@ describe('Standalone Functions', () => {
     expect(() => mean([])).toThrow(TypeError);
   });
 
-  test('median should calculate the median of an array', () => {
+  test('median should calculate the median of the array', () => {
     expect(median(numbers)).toBe(2);
   });
 
@@ -214,7 +290,14 @@ describe('Standalone Functions', () => {
     expect(() => median([])).toThrow(TypeError);
   });
 
-  test('mode should find the mode(s) of an array', () => {
+  test('median should calculate the median for even-length arrays', () => {
+    const evenNumbers = [1, 3, 5, 7];
+    const evenNumbers2 = [2, 4, 6, 8];
+    expect(median(evenNumbers)).toBe(4);
+    expect(median(evenNumbers2)).toBe(5);
+  });
+
+  test('mode should find the mode(s) of the array', () => {
     expect(mode(numbers)).toEqual([1, 2]);
   });
 
@@ -222,7 +305,7 @@ describe('Standalone Functions', () => {
     expect(() => mode([])).toThrow(TypeError);
   });
 
-  test('standardDeviation should calculate the standard deviation of an array', () => {
+  test('standardDeviation should calculate the standard deviation of the array', () => {
     expect(standardDeviation(numbers)).toBeCloseTo(1.3997, 3);
   });
 
@@ -230,12 +313,26 @@ describe('Standalone Functions', () => {
     expect(() => standardDeviation([])).toThrow(TypeError);
   });
 
-  test('range should calculate the range of an array', () => {
+  test('standardDeviation should throw TypeError for non-numeric array', () => {
+    expect(() => standardDeviation([1, 2, '2', 3, '1', 4, '5'])).toThrow(
+      TypeError
+    );
+  });
+
+  test('range should calculate the range of the array', () => {
     expect(range(numbers)).toBe(4);
   });
 
   test('range should throw TypeError for empty array', () => {
     expect(() => range([])).toThrow(TypeError);
+  });
+
+  test('range should throw TypeError for non-numeric array', () => {
+    expect(() => range([1, 2, '2', 3, '1', 4, '5'])).toThrow(TypeError);
+  });
+
+  test('range should throw TypeError for non array input', () => {
+    expect(() => range(1)).toThrow(TypeError);
   });
 
   test('roundTo should round a number to a specified decimal place', () => {

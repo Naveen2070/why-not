@@ -8,6 +8,7 @@ import {
   pluck,
   reproduceTo,
   toUnique,
+  sum,
 } from '../../src/index';
 import { ArrayMutator } from '../../src/index';
 
@@ -158,6 +159,45 @@ describe('ArrayMutator', () => {
   test('compact should return an empty array for empty input', () => {
     expect(arrayMutEmpty.compact()).toEqual([]);
   });
+
+  it('sum should return 0 for an empty array', () => {
+    expect(arrayMutEmpty.sum()).toBe(0);
+  });
+
+  it('sum should calculate the sum of an array of numbers', () => {
+    expect(arrayMutNumbers.sum()).toBe(9);
+  });
+
+  it('sum should throw an error for an array with non-numeric values', () => {
+    const arrayMutNonNumeric = new ArrayMutator(['1', '2', '3']);
+    expect(() => arrayMutNonNumeric.sum()).toThrow(
+      'The array should only contain numbers when no key is provided.'
+    );
+  });
+
+  it('sum should calculate the sum of a specified numeric property in an array of objects', () => {
+    expect(arrayMutObjects.sum('id')).toBe(9);
+  });
+
+  it('sum should throw an error if the specified property is not a number', () => {
+    const array = [{ value: 1 }, { value: '2' }, { value: 3 }];
+    const objectsWithNonNumeric = new ArrayMutator(array);
+    expect(() => objectsWithNonNumeric.sum('id')).toThrow(
+      "The property 'id' must be a number."
+    );
+  });
+
+  it('sum should throw an error if the array is not an array of objects and a key is provided', () => {
+    expect(() => arrayMutNumbers.sum('value')).toThrow(
+      'The array should only contain objects when a key is provided.'
+    );
+  });
+
+  it('sum should handle an array of objects with mixed numeric and non-numeric properties', () => {
+    expect(() => arrayMutObjectsWithFalsy.sum('id')).toThrow(
+      "The property 'id' must be a number."
+    );
+  });
 });
 
 describe('Standalone Functions', () => {
@@ -303,5 +343,50 @@ describe('Standalone Functions', () => {
       { id: 3 },
       { id: 'a' },
     ]);
+  });
+
+  it('should return 0 for an empty array', () => {
+    expect(sum([])).toBe(0);
+  });
+
+  it('should calculate the sum of an array of numbers', () => {
+    expect(sum([1, 2, 3, 4, 5])).toBe(15);
+  });
+
+  it('should throw an error for an array with non-numeric values', () => {
+    expect(() => sum([1, '2', 3])).toThrow(
+      'The array should only contain numbers when no key is provided.'
+    );
+  });
+
+  it('should calculate the sum of a specified numeric property in an array of objects', () => {
+    const array = [{ value: 1 }, { value: 2 }, { value: 3 }];
+    expect(sum(array, 'value')).toBe(6);
+  });
+
+  it('should throw an error if the specified property is not a number', () => {
+    const array = [{ value: 1 }, { value: '2' }, { value: 3 }];
+    expect(() => sum(array, 'value')).toThrow(
+      "The property 'value' must be a number."
+    );
+  });
+
+  it('should throw an error if the array is not an array of objects and a key is provided', () => {
+    expect(() => sum([1, 2, 3], 'value')).toThrow(
+      'The array should only contain objects when a key is provided.'
+    );
+  });
+
+  it('should handle an array of objects with mixed numeric and non-numeric properties', () => {
+    const array = [
+      { value: 1 },
+      { value: '2' },
+      { value: 3 },
+      { value: null },
+      { value: undefined },
+    ];
+    expect(() => sum(array, 'value')).toThrow(
+      "The property 'value' must be a number."
+    );
   });
 });

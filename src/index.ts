@@ -12,6 +12,7 @@ import {
   partitionBy,
   pluck,
   compact,
+  sum,
 } from './array/index';
 import {
   gcd,
@@ -45,6 +46,7 @@ export {
   partitionBy,
   pluck,
   compact,
+  sum,
   gcd,
   lcm,
   isPrime,
