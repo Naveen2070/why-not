@@ -1,6 +1,4 @@
-# Why Not
-
-# Notice: Still not deployed as a npm package. In development stage
+# Why Not (sitll not available as npm package yet, Under Development)
 
 **Why Not** is a utility library designed to streamline development by providing a collection of reusable methods. It helps reduce redundant code and enhance code readability. This library offers utilities not only for array manipulation but also for operations involving math, dates, strings, and more.
 
@@ -42,11 +40,63 @@ const compacted = compact([1, 0, 2, false, 3, null, undefined, '']); // [1, 2, 3
 
 ### Math Utilities
 
-(To be included soon...)
+```js
+import {
+  gcd,
+  lcm,
+  isPrime,
+  factorial,
+  fibonacci,
+  mean,
+  median,
+  mode,
+  standardDeviation,
+  range,
+  roundTo,
+  MathMutator,
+} from 'why-not';
+
+const a = 12;
+const b = 15;
+
+console.log(gcd(a, b)); // 3
+console.log(lcm(a, b)); // 60
+console.log(isPrime(17)); // true
+console.log(factorial(5)); // 120
+console.log(fibonacci(7)); // 13
+
+const array = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
+
+console.log(mean(array)); // 3
+console.log(median(array)); // 3
+console.log(mode(array)); // [4]
+console.log(standardDeviation(array)); // 1.0954
+console.log(range(array)); // 3
+console.log(roundTo(1.23456789, 4)); // 1.2346
+
+const mathMutator = new MathMutator(array);
+console.log(mathMutator.mean()); // 3
+console.log(mathMutator.median()); // 3
+console.log(mathMutator.mode()); // [4]
+console.log(mathMutator.standardDeviation()); // 1.0954
+console.log(mathMutator.range()); // 3
+console.log(mathMutator.roundTo(1.23456789, 4)); // 1.2346
+```
 
 ### Date Utilities
 
-(To be included soon...)
+```js
+import { formatDate, parseDate, DateFormatter } from 'why-not';
+
+const dateStr = '2023-07-30T15:30:00.000Z';
+console.log(formatDate(new Date(dateStr), 'dd/MM/yyyy')); // 30/07/2023
+
+const parsedDate = parseDate(dateStr, 'yyyy-MM-dd');
+console.log(parsedDate); // 2023-07-30
+
+const formattedDate = DateFormatter(dateStr, { format: 'dd/MM/yyyy' });
+console.log(formattedDate); // 30/07/2023
+```
 
 ### String Utilities
 

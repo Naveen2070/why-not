@@ -7,4 +7,5 @@ export {
   partitionBy,
   pluck,
   compact,
+  sum,
 } from './arrayMutation';

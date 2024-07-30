@@ -1,4 +1,4 @@
-import { Primitive, PrimitiveRecord } from '../definitions/types';
+import type { Primitive, PrimitiveRecord } from '../definitions/types';
 
 /**
  * Returns a new array with all duplicate elements removed, based on the value returned by the `JSON.stringify` function.
@@ -180,6 +180,50 @@ function compact<T>(array: T[], key?: keyof T): T[] {
 }
 
 /**
+ * Calculates the sum of all numbers in the array.
+ *
+ * If a key is provided, calculates the sum of the values of the specified property
+ * in each object in the array.
+ *
+ * @template T - The type of the elements in the array.
+ * @param {T[]} array - The array containing the numbers.
+ * @param {keyof T} [key] - (Optional) The key of the property containing the numbers.
+ * @return {number} The sum of all numbers in the array.
+ * @throws {TypeError} If the key is provided and the value of the specified property is not a number.
+ * @throws {Error} If the array is empty or not an array of objects.
+ */
+function sum<T>(array: T[], key?: keyof T): number {
+  if (array.length === 0) {
+    return 0;
+  }
+
+  if (key === undefined) {
+    // Ensure the array is of number type
+    if (!array.every((item) => typeof item === 'number')) {
+      throw new Error(
+        'The array should only contain numbers when no key is provided.'
+      );
+    }
+    return (array as number[]).reduce((acc, item) => acc + item, 0);
+  } else {
+    // Ensure the array is of object type
+    if (typeof array[0] !== 'object' || array[0] === null) {
+      throw new Error(
+        'The array should only contain objects when a key is provided.'
+      );
+    }
+    // For arrays of objects with numeric properties
+    return array.reduce((acc, item) => {
+      const value = item[key];
+      if (typeof value !== 'number') {
+        throw new Error(`The property '${String(key)}' must be a number.`);
+      }
+      return acc + value;
+    }, 0);
+  }
+}
+
+/**
  * The ArrayMutator class provides a set of array mutation functions wrapped
  * in a class for chaining.
  *
@@ -190,6 +234,11 @@ class ArrayMutator<T extends Primitive | PrimitiveRecord> {
    * The array being mutated.
    */
   private array: T[];
+
+  /**
+   * The result of the mutation.
+   */
+  private _result: any | null = null;
 
   /**
    * Creates an instance of ArrayMutator.
@@ -291,6 +340,19 @@ class ArrayMutator<T extends Primitive | PrimitiveRecord> {
   compact(key?: keyof T): T[] {
     return compact(this.array, key);
   }
+
+  /**
+   * Calculates the sum of all numbers in the array.
+   *
+   * If a key is provided, calculates the sum of the values of the specified property
+   * in each object in the array.
+   *
+   * @param {keyof T} [key] - (Optional) The key of the property containing the numbers.
+   * @return {number} The sum of all numbers in the array.
+   */
+  sum(key?: keyof T): number {
+    return sum(this.array, key);
+  }
 }
 
 export {
@@ -302,5 +364,6 @@ export {
   partitionBy,
   pluck,
   compact,
+  sum,
   ArrayMutator,
 };
