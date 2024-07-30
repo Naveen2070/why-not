@@ -11,7 +11,7 @@ import { formatDate, parseDate } from './utils/helpers';
 function DateFormatter(dateString: string, options?: FormatterOptions): string {
   const { format, from, to } = options || {};
 
-  let date: Date;
+  let date: Date | null;
 
   // Parse the date string based on the 'from' format if provided
   if (from) {
@@ -21,7 +21,7 @@ function DateFormatter(dateString: string, options?: FormatterOptions): string {
   }
 
   // Check if the date is invalid
-  if (isNaN(date.getTime())) {
+  if (!date || isNaN(date.getTime())) {
     return 'Invalid Date';
   }
 
