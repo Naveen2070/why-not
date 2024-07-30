@@ -3,7 +3,6 @@
 
 # testing
 /coverage
-src/example.ts
 
 # build
 /dist
