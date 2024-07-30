@@ -28,14 +28,18 @@ export function parseDate(dateString: string, format: string): Date {
     if (part === 'ss') dateComponents.ss = value;
   });
 
-  return new Date(
-    dateComponents.yyyy,
-    dateComponents.MM,
-    dateComponents.dd,
-    dateComponents.HH,
-    dateComponents.mm,
-    dateComponents.ss
+  const parsedDate = new Date(
+    Date.UTC(
+      dateComponents.yyyy,
+      dateComponents.MM,
+      dateComponents.dd,
+      dateComponents.HH,
+      dateComponents.mm,
+      dateComponents.ss
+    )
   );
+
+  return parsedDate;
 }
 
 /**
@@ -49,12 +53,12 @@ export function formatDate(date: Date, format: string): string {
   const pad = (num: number) => (num < 10 ? '0' + num : num);
 
   const replacements: { [key: string]: string } = {
-    yyyy: date.getFullYear().toString(),
-    MM: pad(date.getMonth() + 1) as string,
-    dd: pad(date.getDate()) as string,
-    HH: pad(date.getHours()) as string,
-    mm: pad(date.getMinutes()) as string,
-    ss: pad(date.getSeconds()) as string,
+    yyyy: date.getUTCFullYear().toString(),
+    MM: pad(date.getUTCMonth() + 1) as any,
+    dd: pad(date.getUTCDate()) as any,
+    HH: pad(date.getUTCHours()) as any,
+    mm: pad(date.getUTCMinutes()) as any,
+    ss: pad(date.getUTCSeconds()) as any,
   };
 
   return format.replace(/yyyy|MM|dd|HH|mm|ss/g, (match) => replacements[match]);

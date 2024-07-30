@@ -8,10 +8,7 @@ import { formatDate, parseDate } from './utils/helpers';
  * @param {FormatterOptions} [options] - Optional formatter options.
  * @return {string} The formatted date string.
  */
-export function DateFormatter(
-  dateString: string,
-  options?: FormatterOptions
-): string {
+function DateFormatter(dateString: string, options?: FormatterOptions): string {
   const { format, from, to } = options || {};
 
   let date: Date;
@@ -23,6 +20,11 @@ export function DateFormatter(
     date = new Date(dateString);
   }
 
+  // Check if the date is invalid
+  if (isNaN(date.getTime())) {
+    return 'Invalid Date';
+  }
+
   // Format the date based on the 'to' format if provided
   if (to) {
     return formatDate(date, to);
@@ -31,3 +33,5 @@ export function DateFormatter(
   // Return the date in the specified 'format' or ISO string if no format is provided
   return format ? formatDate(date, format) : date.toISOString();
 }
+
+export { DateFormatter };
