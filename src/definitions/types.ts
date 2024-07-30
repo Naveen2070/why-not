@@ -4,4 +4,10 @@ type PrimitiveRecord = Record<string, Primitive>;
 type PrimitiveMap = Map<string, Primitive>;
 type NumArray = number[];
 
-export { Primitive, PrimitiveArray, PrimitiveRecord, PrimitiveMap, NumArray };
+export type {
+  Primitive,
+  PrimitiveArray,
+  PrimitiveRecord,
+  PrimitiveMap,
+  NumArray,
+};

@@ -1,4 +1,4 @@
-import { Primitive, PrimitiveRecord } from '../definitions/types';
+import type { Primitive, PrimitiveRecord } from '../definitions/types';
 
 /**
  * Returns a new array with all duplicate elements removed, based on the value returned by the `JSON.stringify` function.

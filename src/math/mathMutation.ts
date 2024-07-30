@@ -1,4 +1,4 @@
-import { NumArray } from '../definitions/types';
+import type { NumArray } from '../definitions/types';
 
 /**
  * Calculates the greatest common divisor (GCD) of two numbers.
