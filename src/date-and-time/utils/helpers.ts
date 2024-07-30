@@ -5,9 +5,20 @@
  * @param {string} format - The format to parse the date string.
  * @return {Date} The parsed date.
  */
+/**
+ * Parses a date string based on a given format.
+ *
+ * @param {string} dateString - The date string to parse.
+ * @param {string} format - The format to parse the date string.
+ * @return {Date} The parsed date.
+ */
 export function parseDate(dateString: string, format: string): Date {
   const formatParts = format.split(/[^A-Za-z]/);
   const dateParts = dateString.split(/[^0-9]/);
+
+  if (formatParts.length !== dateParts.length) {
+    return new Date(NaN);
+  }
 
   const dateComponents: any = {
     yyyy: 0,
@@ -20,12 +31,16 @@ export function parseDate(dateString: string, format: string): Date {
 
   formatParts.forEach((part, index) => {
     const value = parseInt(dateParts[index], 10);
-    if (part === 'yyyy') dateComponents.yyyy = value;
-    if (part === 'MM') dateComponents.MM = value - 1; // Months are 0-based
-    if (part === 'dd') dateComponents.dd = value;
-    if (part === 'HH') dateComponents.HH = value;
-    if (part === 'mm') dateComponents.mm = value;
-    if (part === 'ss') dateComponents.ss = value;
+    if (isNaN(value)) {
+      dateComponents[part] = NaN;
+    } else {
+      if (part === 'yyyy') dateComponents.yyyy = value;
+      if (part === 'MM') dateComponents.MM = value - 1; // Months are 0-based
+      if (part === 'dd') dateComponents.dd = value;
+      if (part === 'HH') dateComponents.HH = value;
+      if (part === 'mm') dateComponents.mm = value;
+      if (part === 'ss') dateComponents.ss = value;
+    }
   });
 
   const parsedDate = new Date(
@@ -38,6 +53,10 @@ export function parseDate(dateString: string, format: string): Date {
       dateComponents.ss
     )
   );
+
+  if (Object.values(dateComponents).includes(NaN)) {
+    return new Date(NaN);
+  }
 
   return parsedDate;
 }

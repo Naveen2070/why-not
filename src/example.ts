@@ -13,4 +13,4 @@ const formattedDate2 = DateFormatter(dateStr, {
 console.log(formattedDate2); // Output: 30/07/2023
 
 const formattedDate3 = DateFormatter(dateStr);
-console.log(formattedDate3); // Output: 2023-07-30T15:30:00.000Z (ISO format)
+console.log(formattedDate3);

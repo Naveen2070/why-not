@@ -1,6 +1,6 @@
-import { DateFormatter } from '../../src/index'; // Adjust the import path accordingly
+import { DateFormatter } from '../../src/index';
 
-describe('DateFormatter', () => {
+describe('DateFormatter without timeZone', () => {
   it('should format date to specified format', () => {
     const dateStr = '2023-07-30T15:30:00.000Z';
     const formattedDate = DateFormatter(dateStr, { format: 'dd/MM/yyyy' });

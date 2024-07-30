@@ -2,7 +2,7 @@ import type { FormatterOptions } from '../definitions/interfaces';
 import { formatDate, parseDate } from './utils/helpers';
 
 /**
- * Formats a date string based on provided formatter options.
+ * Formats a date string based on provided formatter options or by default in ISO format.
  *
  * @param {string} dateString - The date string to format.
  * @param {FormatterOptions} [options] - Optional formatter options.
