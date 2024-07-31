@@ -27,7 +27,7 @@ import {
   range,
   roundTo,
 } from './math/index';
-import { DateFormatter } from './date-and-time/index';
+import { DateFormatter, FormatTimeStamp } from './date-and-time/index';
 
 //Mutators Imports
 import { ArrayMutator } from './mutators/main';
@@ -60,4 +60,5 @@ export {
   range,
   roundTo,
   DateFormatter,
+  FormatTimeStamp,
 };

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { formatDate, parseDate } from '../../src/date-and-time/utils/helpers';
-import { DateFormatter } from '../../src/index'; // Adjust the import path accordingly
+import { DateFormatter, FormatTimeStamp } from '../../src/index'; // Adjust the import path accordingly
 
 describe('DateFormatter without timeZone', () => {
   // Test cases for different date formats using the DateFormatter function
@@ -96,5 +96,54 @@ describe('DateFormatter without timeZone', () => {
   it('throws an Error for an invalid format', () => {
     expect(() => formatDate(new Date(), null)).toThrow(Error);
     expect(() => formatDate(new Date(), 123)).toThrow(Error);
+  });
+});
+
+describe('FormatTimeStamp', () => {
+  // New tests for FormatTimeStamp
+  it('should format the timestamp correctly from one timezone to another', () => {
+    const timestamp = '2023-07-30T02:00:00Z';
+
+    const options = {
+      from: 'UTC',
+      to: 'IST',
+      format: 'yyyy-MM-dd HH:mm:ss',
+    };
+    const optionswithoutForm = {
+      to: 'GMT',
+      format: 'yyyy-MM-dd HH:mm:ss',
+    };
+
+    const formattedTimestamp = FormatTimeStamp(timestamp, options);
+    const timeStampWithoutForm = FormatTimeStamp(timestamp, optionswithoutForm);
+    expect(formattedTimestamp).toBe('2023-07-30 07:30:00');
+    expect(timeStampWithoutForm).toBe('2023-07-30 02:00:00');
+  });
+
+  it('should handle invalid from timezone gracefully', () => {
+    const timestamp = '2023-07-30T02:00:00Z';
+
+    const optionsWithoutValidFrom = {
+      from: 'Invalid_Timezone',
+      to: 'IST',
+      format: 'yyyy-MM-dd HH:mm:ss',
+    };
+    const optionsWithoutValidTo = {
+      from: 'UTC',
+      to: 'Invalid_Timezone',
+      format: 'yyyy-MM-dd HH:mm:ss',
+    };
+
+    const timeStampWithoutFrom = FormatTimeStamp(
+      timestamp,
+      optionsWithoutValidFrom
+    );
+    const timeStampWithoutTo = FormatTimeStamp(
+      timestamp,
+      optionsWithoutValidTo
+    );
+
+    expect(timeStampWithoutFrom).toBe('Invalid Timezone');
+    expect(timeStampWithoutTo).toBe('Invalid Timezone');
   });
 });
