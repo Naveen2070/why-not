@@ -1,6 +1,8 @@
 //Namespace Imports
 import * as ArrayFunctions from './array/index';
 import * as MathFunctions from './math/index';
+import * as DateFunctions from './date-and-time/index';
+import * as StringFunctions from './string/index';
 
 //Individual Imports
 import {
@@ -28,17 +30,24 @@ import {
   roundTo,
 } from './math/index';
 import { DateFormatter, FormatTimeStamp } from './date-and-time/index';
+import {
+  toCamelCase,
+  toPascalCase,
+  toSnakeCase,
+  toKebabCase,
+  toTitleCase,
+} from './string/index';
 
 //Mutators Imports
 import { ArrayMutator } from './mutators/main';
 import { MathMutator } from './mutators/main';
+import { StringMutator } from './mutators/main';
 
 //All exports
 export {
+  //Array Exports
   ArrayFunctions,
-  MathFunctions,
   ArrayMutator,
-  MathMutator,
   toUnique,
   reproduceTo,
   filterBy,
@@ -48,6 +57,10 @@ export {
   pluck,
   compact,
   sum,
+
+  //Math Exports
+  MathFunctions,
+  MathMutator,
   gcd,
   lcm,
   isPrime,
@@ -59,6 +72,18 @@ export {
   standardDeviation,
   range,
   roundTo,
+
+  //Date and Time Exports
+  DateFunctions,
   DateFormatter,
   FormatTimeStamp,
+
+  //String Exports
+  StringFunctions,
+  StringMutator,
+  toCamelCase,
+  toPascalCase,
+  toSnakeCase,
+  toKebabCase,
+  toTitleCase,
 };
