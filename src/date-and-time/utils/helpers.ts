@@ -56,7 +56,7 @@ export function parseDate(dateString: string, format: string): Date | null {
     )
   );
 
-  return isNaN(parsedDate.getTime()) ? null : parsedDate;
+  return parsedDate;
 }
 
 /**
@@ -88,10 +88,7 @@ export function formatDate(date: Date, format: string): string {
     ss: pad(date.getUTCSeconds()).toString(),
   };
 
-  return format.replace(
-    /yyyy|MM|dd|HH|mm|ss/g,
-    (match) => replacements[match] || match
-  );
+  return format.replace(/yyyy|MM|dd|HH|mm|ss/g, (match) => replacements[match]);
 }
 
 /**
