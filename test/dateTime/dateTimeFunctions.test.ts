@@ -146,4 +146,42 @@ describe('FormatTimeStamp', () => {
     expect(timeStampWithoutFrom).toBe('Invalid Timezone');
     expect(timeStampWithoutTo).toBe('Invalid Timezone');
   });
+  it('should return "Invalid Date" for an invalid date string', () => {
+    const invalidTimestamp = 'invalid-date-string';
+    const options: FormatterOptions = {
+      from: 'UTC',
+      to: 'UTC',
+      format: 'yyyy-MM-dd HH:mm:ss',
+    };
+
+    const result = FormatTimeStamp(invalidTimestamp, options);
+
+    expect(result).toBe('Invalid Date');
+  });
+
+  it('should return "Invalid Date" for an invalid date format', () => {
+    const invalidTimestamp = '2023-07-32'; // Invalid date (32nd day)
+    const options: FormatterOptions = {
+      from: 'UTC',
+      to: 'UTC',
+      format: 'yyyy-MM-dd',
+    };
+
+    const result = FormatTimeStamp(invalidTimestamp, options);
+
+    expect(result).toBe('Invalid Date');
+  });
+
+  it('should return "Invalid Date" for an empty date string', () => {
+    const emptyTimestamp = '';
+    const options: FormatterOptions = {
+      from: 'UTC',
+      to: 'UTC',
+      format: 'yyyy-MM-dd',
+    };
+
+    const result = FormatTimeStamp(emptyTimestamp, options);
+
+    expect(result).toBe('Invalid Date');
+  });
 });

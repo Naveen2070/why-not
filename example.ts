@@ -1,4 +1,4 @@
-import { DateFormatter } from './date-and-time/dateTimeMutation';
+import { DateFormatter } from './src/date-and-time/dateTimeMutation';
 
 // Example usage
 const dateStr = '2023-07-30T15:30:00.000Z';
