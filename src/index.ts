@@ -36,6 +36,14 @@ import {
   toSnakeCase,
   toKebabCase,
   toTitleCase,
+  replaceAt,
+  escapeHTML,
+  unescapeHTML,
+  isNumeric,
+  isEmail,
+  isURL,
+  isAlpha,
+  isAlphanumeric,
 } from './string/index';
 
 //Mutators Imports
@@ -86,4 +94,12 @@ export {
   toSnakeCase,
   toKebabCase,
   toTitleCase,
+  replaceAt,
+  escapeHTML,
+  unescapeHTML,
+  isNumeric,
+  isEmail,
+  isURL,
+  isAlpha,
+  isAlphanumeric,
 };
