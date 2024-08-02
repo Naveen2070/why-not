@@ -4,8 +4,7 @@ function toCamelCase(str: string): string {
     .toLowerCase()
     .replace(/([-_\s][a-z])/g, (group) =>
       group.toUpperCase().replace('-', '').replace('_', '').replace(' ', '')
-    )
-    .replace(/^[A-Z]/, (group) => group.toLowerCase());
+    );
 }
 
 function toPascalCase(str: string): string {
@@ -33,35 +32,39 @@ function toKebabCase(str: string): string {
 
 function toTitleCase(str: string): string {
   return str
-    .toLowerCase()
-    .replace(/([-_\s]?[a-z])/g, (group) => group.toUpperCase());
+    .split(/([_\s-])/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('');
 }
 
 export class StringMutator {
-  constructor(str: string) {
+  constructor(private str: string) {
     this.str = str;
   }
 
-  str: string;
-
   toCamelCase() {
-    return toCamelCase(this.str);
+    this.str = toCamelCase(this.str);
+    return this.str;
   }
 
   toPascalCase() {
-    return toPascalCase(this.str);
+    this.str = toPascalCase(this.str);
+    return this.str;
   }
 
   toSnakeCase() {
-    return toSnakeCase(this.str);
+    this.str = toSnakeCase(this.str);
+    return this.str;
   }
 
   toKebabCase() {
-    return toKebabCase(this.str);
+    this.str = toKebabCase(this.str);
+    return this.str;
   }
 
   toTitleCase() {
-    return toTitleCase(this.str);
+    this.str = toTitleCase(this.str);
+    return this.str;
   }
 }
 

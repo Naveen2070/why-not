@@ -50,7 +50,6 @@ describe('String Case Conversion Functions', () => {
 });
 
 describe('StringMutator Class', () => {
-  const String1 = new StringMutator('hello-world');
   it('should convert to camelCase', () => {
     const mutator = new StringMutator('hello-world');
     expect(mutator.toCamelCase()).toBe('helloWorld');
