@@ -55,31 +55,64 @@ describe('MathMutator', () => {
     expect(() => mathMutNumbers.lcm(4, NaN)).toThrow(RangeError);
   });
 
-  test('isPrime should correctly identify prime numbers', () => {
-    expect(mathMutNumbers.isPrime(2)).toBe(true);
-    expect(mathMutNumbers.isPrime(4)).toBe(false);
+  test('isPrime should throw a TypeError if n is null', () => {
+    expect(() => mathMutNumbers.isPrime(null)).toThrow(TypeError);
   });
 
-  test('isPrime should return false for n <= 1', () => {
+  test('isPrime should throw a TypeError if n is undefined', () => {
+    expect(() => mathMutNumbers.isPrime(undefined)).toThrow(TypeError);
+  });
+
+  test('isPrime should throw a TypeError if n is not a number', () => {
+    expect(() => mathMutNumbers.isPrime('a' as any)).toThrow(TypeError);
+  });
+
+  test('isPrime should throw a RangeError if n is not finite', () => {
+    expect(() => mathMutNumbers.isPrime(Infinity)).toThrow(RangeError);
+  });
+
+  test('isPrime should return false for numbers less than or equal to 1', () => {
+    expect(mathMutNumbers.isPrime(-1)).toBe(false);
     expect(mathMutNumbers.isPrime(0)).toBe(false);
     expect(mathMutNumbers.isPrime(1)).toBe(false);
   });
 
-  test('isPrime should throw TypeError for non-number inputs', () => {
-    expect(() => mathMutNumbers.isPrime('2')).toThrow(TypeError);
+  test('isPrime should return true for isPrime numbers 2 and 3', () => {
+    expect(mathMutNumbers.isPrime(2)).toBe(true);
+    expect(mathMutNumbers.isPrime(3)).toBe(true);
   });
 
-  test('isPrime should throw RangeError for non-finite numbers', () => {
-    expect(() => mathMutNumbers.isPrime(Infinity)).toThrow(RangeError);
+  test('isPrime should return false for numbers divisible by 2 or 3', () => {
+    expect(mathMutNumbers.isPrime(4)).toBe(false);
+    expect(mathMutNumbers.isPrime(6)).toBe(false);
+    expect(mathMutNumbers.isPrime(9)).toBe(false);
   });
 
-  test('isPrime should return false if n is divisible by i or i + 2', () => {
-    expect(isPrime(25)).toBe(false);
+  test('isPrime should return true for a isPrime number larger than 3', () => {
+    expect(mathMutNumbers.isPrime(5)).toBe(true);
+    expect(mathMutNumbers.isPrime(7)).toBe(true);
+    expect(mathMutNumbers.isPrime(11)).toBe(true);
+    expect(mathMutNumbers.isPrime(13)).toBe(true);
+    expect(mathMutNumbers.isPrime(17)).toBe(true);
   });
 
-  test('isPrime should correctly identify prime numbers using 6k ± 1 rule', () => {
-    expect(mathMutNumbers.isPrime(23)).toBe(true);
+  test('isPrime should return false for a non-isPrime number larger than 3', () => {
+    expect(mathMutNumbers.isPrime(15)).toBe(false);
     expect(mathMutNumbers.isPrime(25)).toBe(false);
+    expect(mathMutNumbers.isPrime(49)).toBe(false);
+    expect(mathMutNumbers.isPrime(121)).toBe(false);
+  });
+
+  test('isPrime should return true for large isPrime numbers', () => {
+    expect(mathMutNumbers.isPrime(97)).toBe(true);
+    expect(mathMutNumbers.isPrime(101)).toBe(true);
+    expect(mathMutNumbers.isPrime(103)).toBe(true);
+  });
+
+  test('isPrime should return false for large non-isPrime numbers', () => {
+    expect(mathMutNumbers.isPrime(100)).toBe(false);
+    expect(mathMutNumbers.isPrime(102)).toBe(false);
+    expect(mathMutNumbers.isPrime(104)).toBe(false);
   });
 
   test('factorial should calculate the factorial of a number', () => {
@@ -222,33 +255,64 @@ describe('Standalone Functions', () => {
     expect(() => lcm(4, NaN)).toThrow(RangeError);
   });
 
-  test('isPrime should correctly identify prime numbers', () => {
-    expect(isPrime(2)).toBe(true);
-    expect(isPrime(4)).toBe(false);
+  test('isPrime should throw a TypeError if n is null', () => {
+    expect(() => isPrime(null)).toThrow(TypeError);
   });
 
-  test('isPrime should return false for n <= 1', () => {
+  test('isPrime should throw a TypeError if n is undefined', () => {
+    expect(() => isPrime(undefined)).toThrow(TypeError);
+  });
+
+  test('isPrime should throw a TypeError if n is not a number', () => {
+    expect(() => isPrime('a' as any)).toThrow(TypeError);
+  });
+
+  test('isPrime should throw a RangeError if n is not finite', () => {
+    expect(() => isPrime(Infinity)).toThrow(RangeError);
+  });
+
+  test('isPrime should return false for numbers less than or equal to 1', () => {
+    expect(isPrime(-1)).toBe(false);
     expect(isPrime(0)).toBe(false);
     expect(isPrime(1)).toBe(false);
   });
 
-  test('isPrime should throw TypeError for non-number inputs', () => {
-    expect(() => isPrime('2')).toThrow(TypeError);
+  test('isPrime should return true for isPrime numbers 2 and 3', () => {
+    expect(isPrime(2)).toBe(true);
+    expect(isPrime(3)).toBe(true);
   });
 
-  test('isPrime should throw RangeError for non-finite numbers', () => {
-    expect(() => isPrime(Infinity)).toThrow(RangeError);
+  test('isPrime should return false for numbers divisible by 2 or 3', () => {
+    expect(isPrime(4)).toBe(false);
+    expect(isPrime(6)).toBe(false);
+    expect(isPrime(9)).toBe(false);
   });
 
-  test('isPrime should return false if n is divisible by i or i + 2', () => {
+  test('isPrime should return true for a isPrime number larger than 3', () => {
+    expect(isPrime(5)).toBe(true);
+    expect(isPrime(7)).toBe(true);
+    expect(isPrime(11)).toBe(true);
+    expect(isPrime(13)).toBe(true);
+    expect(isPrime(17)).toBe(true);
+  });
+
+  test('isPrime should return false for a non-isPrime number larger than 3', () => {
+    expect(isPrime(15)).toBe(false);
     expect(isPrime(25)).toBe(false);
-    expect(isPrime(27)).toBe(false);
-    expect(isPrime(28)).toBe(false);
+    expect(isPrime(49)).toBe(false);
+    expect(isPrime(121)).toBe(false);
   });
 
-  test('isPrime should correctly identify prime numbers using 6k ± 1 rule', () => {
-    expect(isPrime(23)).toBe(true);
-    expect(isPrime(25)).toBe(false);
+  test('isPrime should return true for large isPrime numbers', () => {
+    expect(isPrime(97)).toBe(true);
+    expect(isPrime(101)).toBe(true);
+    expect(isPrime(103)).toBe(true);
+  });
+
+  test('isPrime should return false for large non-isPrime numbers', () => {
+    expect(isPrime(100)).toBe(false);
+    expect(isPrime(102)).toBe(false);
+    expect(isPrime(104)).toBe(false);
   });
 
   test('factorial should calculate the factorial of a number', () => {

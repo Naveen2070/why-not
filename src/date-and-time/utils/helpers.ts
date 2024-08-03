@@ -12,9 +12,7 @@ export function parseDate(dateString: string, format: string): Date | null {
 
   const formatParts = format.split(/[^A-Za-z]/);
   const dateParts = dateString.split(/[^0-9]/);
-  console.log('====================================');
-  console.log(dateParts);
-  console.log('====================================');
+
   if (formatParts.length !== dateParts.length) {
     return null;
   }
@@ -58,7 +56,7 @@ export function parseDate(dateString: string, format: string): Date | null {
     )
   );
 
-  return isNaN(parsedDate.getTime()) ? null : parsedDate;
+  return parsedDate;
 }
 
 /**
@@ -90,8 +88,18 @@ export function formatDate(date: Date, format: string): string {
     ss: pad(date.getUTCSeconds()).toString(),
   };
 
-  return format.replace(
-    /yyyy|MM|dd|HH|mm|ss/g,
-    (match) => replacements[match] || match
-  );
+  return format.replace(/yyyy|MM|dd|HH|mm|ss/g, (match) => replacements[match]);
+}
+
+/**
+ * Converts a date to a specified timezone offset.
+ *
+ * @param {Date} date - The date to convert.
+ * @param {number} offset - The timezone offset in minutes.
+ * @return {Date} The converted date.
+ */
+export function convertTimezone(date: Date, offset: number): Date {
+  const utc = date.getTime() + date.getTimezoneOffset() * 60000;
+  const converted = new Date(utc + offset * 60000);
+  return converted;
 }
