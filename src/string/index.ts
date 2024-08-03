@@ -12,4 +12,5 @@ export {
   isURL,
   isAlpha,
   isAlphanumeric,
+  isEqual,
 } from './stringMutation';

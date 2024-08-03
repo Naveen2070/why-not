@@ -1,3 +1,4 @@
+import { CompareOptions } from '../definitions/interfaces';
 /**
  * Converts a string to camel case.
  *
@@ -95,6 +96,17 @@ declare function isAlpha(str: string): boolean;
  */
 declare function isAlphanumeric(str: string): boolean;
 /**
+ * Compares two strings for equality or checks if one starts/ends/contains the other,
+ * with optional ignore case option.
+ *
+ * @param {string} str1 - The first string to compare.
+ * @param {string} str2 - The second string to compare.
+ * @param {CompareOptions} [options] - Optional comparison options.
+ * @return {boolean} - True if the strings match the criteria, false otherwise.
+ * @throws {TypeError} - If any of the options are not booleans.
+ */
+declare function isEqual(str1: string, str2: string, options?: CompareOptions): boolean;
+/**
  * Class for mutating a string in various ways.
  */
 export declare class StringMutator {
@@ -180,6 +192,16 @@ export declare class StringMutator {
      *  @return `true` if the string contains only alphanumeric characters, `false` otherwise.
      */
     isAlphanumeric(): boolean;
+    /**
+     * Compares two strings for equality or checks if one starts/ends with the other,
+     * with optional ignore case option.
+     *
+     * @param {string} str1 - The first string to compare.
+     * @param {string} str2 - The second string to compare.
+     * @param {CompareOptions} [options] - Optional comparison options.
+     * @return {boolean} - True if the strings match the criteria, false otherwise.
+     */
+    isEqual(str2: string, options?: CompareOptions): boolean;
 }
-export { toCamelCase, toPascalCase, toSnakeCase, toKebabCase, toTitleCase, replaceAt, escapeHTML, unescapeHTML, isNumeric, isEmail, isURL, isAlpha, isAlphanumeric, };
+export { toCamelCase, toPascalCase, toSnakeCase, toKebabCase, toTitleCase, replaceAt, escapeHTML, unescapeHTML, isNumeric, isEmail, isURL, isAlpha, isAlphanumeric, isEqual, };
 //# sourceMappingURL=stringMutation.d.ts.map

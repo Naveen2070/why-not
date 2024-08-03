@@ -4,4 +4,11 @@ interface FormatterOptions {
   to?: string;
 }
 
-export type { FormatterOptions };
+interface CompareOptions {
+  ignoreCase?: boolean;
+  startsWith?: boolean;
+  endsWith?: boolean;
+  has?: boolean;
+}
+
+export type { FormatterOptions, CompareOptions };

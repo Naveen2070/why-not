@@ -1,4 +1,7 @@
+import { CompareOptions } from '../definitions/interfaces';
+
 //1.String Case Conversions
+
 /**
  * Converts a string to camel case.
  *
@@ -212,6 +215,77 @@ function isAlphanumeric(str: string): boolean {
   return alphanumericRegex.test(str);
 }
 
+/**
+ * Compares two strings for equality or checks if one starts/ends/contains the other,
+ * with optional ignore case option.
+ *
+ * @param {string} str1 - The first string to compare.
+ * @param {string} str2 - The second string to compare.
+ * @param {CompareOptions} [options] - Optional comparison options.
+ * @return {boolean} - True if the strings match the criteria, false otherwise.
+ * @throws {TypeError} - If any of the options are not booleans.
+ */
+function isEqual(
+  str1: string,
+  str2: string,
+  options?: CompareOptions
+): boolean {
+  // Check if the input strings are non-empty
+  if (!str1 || !str2) {
+    throw new Error('Input arguments must be non-empty strings');
+  }
+
+  // Check if the input arguments are strings
+  if (typeof str1 !== 'string' || typeof str2 !== 'string') {
+    throw new TypeError('Input arguments must be strings');
+  }
+
+  // Check if options is an object
+  if (options !== undefined && typeof options !== 'object') {
+    throw new TypeError('Options must be an object');
+  }
+
+  // Check if the options object has valid properties
+  if (options) {
+    const { ignoreCase, startsWith, endsWith, has } = options;
+
+    if (
+      (ignoreCase !== undefined && typeof ignoreCase !== 'boolean') ||
+      (startsWith !== undefined && typeof startsWith !== 'boolean') ||
+      (endsWith !== undefined && typeof endsWith !== 'boolean') ||
+      (has !== undefined && typeof has !== 'boolean')
+    ) {
+      throw new TypeError(
+        'Options must be an object with ignoreCase, startsWith, endsWith, and has properties as booleans'
+      );
+    }
+  }
+
+  // Convert the strings to lowercase if ignoreCase is true
+  if (options?.ignoreCase) {
+    str1 = str1.toLowerCase();
+    str2 = str2.toLowerCase();
+  }
+
+  // Check if str1 starts with str2 if startsWith is true
+  if (options?.startsWith) {
+    return str1.startsWith(str2);
+  }
+
+  // Check if str1 includes str2 if has is true
+  if (options?.has) {
+    return str1.includes(str2);
+  }
+
+  // Check if str1 ends with str2 if endsWith is true
+  if (options?.endsWith) {
+    return str1.endsWith(str2);
+  }
+
+  // Return true if the strings are equal (case sensitive)
+  return str1 === str2;
+}
+
 //StringMutator Class
 /**
  * Class for mutating a string in various ways.
@@ -355,6 +429,22 @@ export class StringMutator {
   isAlphanumeric(): boolean {
     return isAlphanumeric(this.str);
   }
+
+  // 4. String comparison functions
+
+  /**
+   * Compares two strings for equality or checks if one starts/ends with the other,
+   * with optional ignore case option.
+   *
+   * @param {string} str1 - The first string to compare.
+   * @param {string} str2 - The second string to compare.
+   * @param {CompareOptions} [options] - Optional comparison options.
+   * @return {boolean} - True if the strings match the criteria, false otherwise.
+   */
+  isEqual(str2: string, options?: CompareOptions): boolean {
+    // Use the isEqual function to compare the strings
+    return isEqual(this.str, str2, options);
+  }
 }
 
 export {
@@ -371,4 +461,5 @@ export {
   isURL,
   isAlpha,
   isAlphanumeric,
+  isEqual,
 };

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isAlphanumeric = exports.isAlpha = exports.isURL = exports.isEmail = exports.isNumeric = exports.unescapeHTML = exports.escapeHTML = exports.replaceAt = exports.toTitleCase = exports.toKebabCase = exports.toSnakeCase = exports.toPascalCase = exports.toCamelCase = void 0;
+exports.isEqual = exports.isAlphanumeric = exports.isAlpha = exports.isURL = exports.isEmail = exports.isNumeric = exports.unescapeHTML = exports.escapeHTML = exports.replaceAt = exports.toTitleCase = exports.toKebabCase = exports.toSnakeCase = exports.toPascalCase = exports.toCamelCase = void 0;
 var stringMutation_1 = require("./stringMutation");
 Object.defineProperty(exports, "toCamelCase", { enumerable: true, get: function () { return stringMutation_1.toCamelCase; } });
 Object.defineProperty(exports, "toPascalCase", { enumerable: true, get: function () { return stringMutation_1.toPascalCase; } });
@@ -15,4 +15,5 @@ Object.defineProperty(exports, "isEmail", { enumerable: true, get: function () {
 Object.defineProperty(exports, "isURL", { enumerable: true, get: function () { return stringMutation_1.isURL; } });
 Object.defineProperty(exports, "isAlpha", { enumerable: true, get: function () { return stringMutation_1.isAlpha; } });
 Object.defineProperty(exports, "isAlphanumeric", { enumerable: true, get: function () { return stringMutation_1.isAlphanumeric; } });
+Object.defineProperty(exports, "isEqual", { enumerable: true, get: function () { return stringMutation_1.isEqual; } });
 //# sourceMappingURL=index.js.map

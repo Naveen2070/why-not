@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   toCamelCase,
   toPascalCase,
@@ -12,6 +13,7 @@ import {
   isURL,
   isAlpha,
   isAlphanumeric,
+  isEqual,
 } from '../../src/index';
 import { StringMutator } from '../../src/index';
 
@@ -140,6 +142,77 @@ describe('String Validation Functions', () => {
   });
 });
 
+describe('String Comparison Functions', () => {
+  it('should compare strings with case sensitivity', () => {
+    expect(isEqual('Hello', 'Hello')).toBe(true);
+    expect(isEqual('Hello', 'hello')).toBe(false);
+    expect(isEqual('hello', 'hello')).toBe(true);
+    expect(isEqual('HELLO', 'HELLO')).toBe(true);
+    expect(isEqual('Hello', 'World')).toBe(false);
+  });
+
+  it('should compare strings ignoring case', () => {
+    expect(isEqual('Hello', 'Hello', { ignoreCase: true })).toBe(true);
+    expect(isEqual('Hello', 'hello', { ignoreCase: true })).toBe(true);
+    expect(isEqual('hello', 'hello', { ignoreCase: true })).toBe(true);
+    expect(isEqual('HELLO', 'HELLO', { ignoreCase: true })).toBe(true);
+    expect(isEqual('Hello', 'World', { ignoreCase: true })).toBe(false);
+    expect(isEqual('HeLLo', 'heLLo', { ignoreCase: true })).toBe(true);
+  });
+
+  it('should check if a string starts with another string', () => {
+    expect(isEqual('Hello', 'He', { startsWith: true })).toBe(true);
+    expect(isEqual('Hello', 'he', { startsWith: true })).toBe(false);
+    expect(isEqual('Hello', 'hello', { startsWith: true })).toBe(false);
+    expect(
+      isEqual('Hello', 'hello', { startsWith: true, ignoreCase: true })
+    ).toBe(true);
+    expect(isEqual('Hello', 'Hell', { startsWith: true })).toBe(true);
+    expect(isEqual('Hello', 'World', { startsWith: true })).toBe(false);
+  });
+
+  it('should check if a string ends with another string', () => {
+    expect(isEqual('Hello', 'lo', { endsWith: true })).toBe(true);
+    expect(isEqual('Hello', 'LO', { endsWith: true })).toBe(false);
+    expect(isEqual('Hello', 'LO', { endsWith: true, ignoreCase: true })).toBe(
+      true
+    );
+    expect(isEqual('Hello', 'o', { endsWith: true })).toBe(true);
+    expect(isEqual('Hello', 'Hello', { endsWith: true })).toBe(true);
+    expect(isEqual('Hello', 'World', { endsWith: true })).toBe(false);
+  });
+
+  it('should check if a string contains another string', () => {
+    expect(isEqual('Hello', 'ell', { has: true })).toBe(true);
+    expect(isEqual('Hello', 'ELL', { has: true })).toBe(false);
+    expect(isEqual('Hello', 'ELL', { has: true, ignoreCase: true })).toBe(true);
+    expect(isEqual('Hello', 'lo', { has: true })).toBe(true);
+    expect(isEqual('Hello', 'Hello', { has: true })).toBe(true);
+    expect(isEqual('Hello', 'World', { has: true })).toBe(false);
+  });
+
+  it('should throw TypeError if input arguments are missing', () => {
+    expect(() => isEqual()).toThrow(Error);
+    expect(() => isEqual('a')).toThrow(Error);
+  });
+
+  it('should throw TypeError if input arguments are not strings', () => {
+    expect(() => isEqual(1, 2)).toThrow(TypeError);
+    expect(() => isEqual('a', 1)).toThrow(TypeError);
+    expect(() => isEqual(1, 'b')).toThrow(TypeError);
+  });
+
+  it('should throw TypeError if options is not an object', () => {
+    expect(() => isEqual('a', 'b', 'c')).toThrow(TypeError);
+  });
+
+  it('should throw TypeError if options is not an object with ignoreCase, startsWith, and endsWith properties as booleans', () => {
+    expect(() => isEqual('a', 'b', { ignoreCase: 'a' })).toThrow(TypeError);
+    expect(() => isEqual('a', 'b', { startsWith: 'a' })).toThrow(TypeError);
+    expect(() => isEqual('a', 'b', { endsWith: 'a' })).toThrow(TypeError);
+  });
+});
+
 describe('StringMutator Class', () => {
   it('should convert to camelCase', () => {
     const mutator = new StringMutator('hello-world');
@@ -234,5 +307,59 @@ describe('StringMutator Class', () => {
     expect(mutator.isAlphanumeric()).toBe(true);
     expect(new StringMutator('abc def').isAlphanumeric()).toBe(false);
     expect(new StringMutator('abc-def').isAlphanumeric()).toBe(false);
+  });
+
+  it('should compare strings', () => {
+    expect(new StringMutator('abc').isEqual('abc')).toBe(true);
+    expect(new StringMutator('abc').isEqual('def')).toBe(false);
+    expect(new StringMutator('abc').isEqual('ABC', { ignoreCase: true })).toBe(
+      true
+    );
+    expect(new StringMutator('abc').isEqual('ABC', { ignoreCase: false })).toBe(
+      false
+    );
+    expect(new StringMutator('abc').isEqual('a', { startsWith: true })).toBe(
+      true
+    );
+    expect(new StringMutator('abc').isEqual('c', { endsWith: true })).toBe(
+      true
+    );
+    expect(
+      new StringMutator('abc').isEqual('A', {
+        ignoreCase: true,
+        startsWith: true,
+      })
+    ).toBe(true);
+    expect(
+      new StringMutator('abc').isEqual('C', {
+        ignoreCase: true,
+        endsWith: true,
+      })
+    ).toBe(true);
+    expect(new StringMutator('abc').isEqual('c', { startsWith: false })).toBe(
+      false
+    );
+    expect(new StringMutator('abc').isEqual('d', { endsWith: true })).toBe(
+      false
+    );
+    expect(new StringMutator('abc').isEqual('b', { has: true })).toBe(true);
+    expect(new StringMutator('abc').isEqual('d', { has: false })).toBe(false);
+    expect(() => new StringMutator('abc').isEqual()).toThrow(Error);
+    expect(() => new StringMutator('abc').isEqual(12)).toThrow(TypeError);
+    expect(() => new StringMutator('abc').isEqual('def', '12')).toThrow(
+      TypeError
+    );
+    expect(() =>
+      new StringMutator('abc').isEqual('def', { ignoreCase: 12 })
+    ).toThrow(TypeError);
+    expect(() =>
+      new StringMutator('abc').isEqual('def', { startsWith: 12 })
+    ).toThrow(TypeError);
+    expect(() =>
+      new StringMutator('abc').isEqual('def', { endsWith: 12 })
+    ).toThrow(TypeError);
+    expect(() => new StringMutator('abc').isEqual('def', { has: 12 })).toThrow(
+      TypeError
+    );
   });
 });

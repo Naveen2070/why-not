@@ -44,6 +44,7 @@ import {
   isURL,
   isAlpha,
   isAlphanumeric,
+  isEqual,
 } from './string/index';
 
 //Mutators Imports
@@ -102,4 +103,5 @@ export {
   isURL,
   isAlpha,
   isAlphanumeric,
+  isEqual,
 };
