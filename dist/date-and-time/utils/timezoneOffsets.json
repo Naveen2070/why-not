@@ -1,0 +1,198 @@
+{
+    "UTC": {
+        "offset": 0,
+        "place": "Coordinated Universal Time"
+    },
+    "PST": {
+        "offset": -480,
+        "place": "Pacific Standard Time (North America)"
+    },
+    "MST": {
+        "offset": -420,
+        "place": "Mountain Standard Time (North America)"
+    },
+    "CST": {
+        "offset": -360,
+        "place": "Central Standard Time (North America)"
+    },
+    "EST": {
+        "offset": -300,
+        "place": "Eastern Standard Time (North America)"
+    },
+    "AKST": {
+        "offset": -540,
+        "place": "Alaska Standard Time"
+    },
+    "HST": {
+        "offset": -600,
+        "place": "Hawaii Standard Time"
+    },
+    "AST": {
+        "offset": -240,
+        "place": "Atlantic Standard Time"
+    },
+    "NST": {
+        "offset": -210,
+        "place": "Newfoundland Standard Time"
+    },
+    "ART": {
+        "offset": -180,
+        "place": "Argentina Time"
+    },
+    "BRT": {
+        "offset": -180,
+        "place": "Brasilia Time"
+    },
+    "CET": {
+        "offset": 60,
+        "place": "Central European Time"
+    },
+    "CST6CDT": {
+        "offset": -360,
+        "place": "Central Standard Time (North America, Daylight Saving Time)"
+    },
+    "EET": {
+        "offset": 120,
+        "place": "Eastern European Time"
+    },
+    "HKT": {
+        "offset": 480,
+        "place": "Hong Kong Time"
+    },
+    "IST": {
+        "offset": 330,
+        "place": "Indian Standard Time"
+    },
+    "JST": {
+        "offset": 540,
+        "place": "Japan Standard Time"
+    },
+    "KST": {
+        "offset": 540,
+        "place": "Korea Standard Time"
+    },
+    "NZST": {
+        "offset": 720,
+        "place": "New Zealand Standard Time"
+    },
+    "NZDT": {
+        "offset": 780,
+        "place": "New Zealand Daylight Time"
+    },
+    "GMT": {
+        "offset": 0,
+        "place": "Greenwich Mean Time"
+    },
+    "BST": {
+        "offset": 60,
+        "place": "British Summer Time"
+    },
+    "WET": {
+        "offset": 0,
+        "place": "Western European Time"
+    },
+    "WEST": {
+        "offset": 60,
+        "place": "Western European Summer Time"
+    },
+    "EAT": {
+        "offset": 180,
+        "place": "East Africa Time"
+    },
+    "CAT": {
+        "offset": 120,
+        "place": "Central Africa Time"
+    },
+    "SAST": {
+        "offset": 120,
+        "place": "South Africa Standard Time"
+    },
+    "EAST": {
+        "offset": 600,
+        "place": "Eastern Australia Standard Time"
+    },
+    "AEST": {
+        "offset": 600,
+        "place": "Australian Eastern Standard Time"
+    },
+    "AEDT": {
+        "offset": 660,
+        "place": "Australian Eastern Daylight Time"
+    },
+    "ACST": {
+        "offset": 570,
+        "place": "Australian Central Standard Time"
+    },
+    "ACDT": {
+        "offset": 630,
+        "place": "Australian Central Daylight Time"
+    },
+    "AWST": {
+        "offset": 480,
+        "place": "Australian Western Standard Time"
+    },
+    "WAT": {
+        "offset": 60,
+        "place": "West Africa Time"
+    },
+    "MET": {
+        "offset": 60,
+        "place": "Middle European Time"
+    },
+    "NET": {
+        "offset": 240,
+        "place": "Near East Time"
+    },
+    "PLT": {
+        "offset": 300,
+        "place": "Pakistan Lahore Time"
+    },
+    "VST": {
+        "offset": 420,
+        "place": "Vietnam Standard Time"
+    },
+    "CTT": {
+        "offset": 480,
+        "place": "China Taiwan Time"
+    },
+    "ACT": {
+        "offset": 570,
+        "place": "Central Australia Time"
+    },
+    "AET": {
+        "offset": 600,
+        "place": "Australia Eastern Time"
+    },
+    "SST": {
+        "offset": 660,
+        "place": "Solomon Standard Time"
+    },
+    "MIT": {
+        "offset": -660,
+        "place": "Midway Islands Time"
+    },
+    "PRT": {
+        "offset": -240,
+        "place": "Puerto Rico and US Virgin Islands Time"
+    },
+    "CNT": {
+        "offset": -210,
+        "place": "Canada Newfoundland Time"
+    },
+    "AGT": {
+        "offset": -180,
+        "place": "Argentina Standard Time"
+    },
+    "BET": {
+        "offset": -180,
+        "place": "Brazil Eastern Time"
+    },
+    "IET": {
+        "offset": -300,
+        "place": "Indiana Eastern Standard Time"
+    },
+    "PNT": {
+        "offset": -420,
+        "place": "Phoenix Standard Time"
+    }
+}

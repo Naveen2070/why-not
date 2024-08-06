@@ -45,6 +45,8 @@ import {
   isAlpha,
   isAlphanumeric,
   isEqual,
+  splitWords,
+  splitByLength,
 } from './string/index';
 
 //Mutators Imports
@@ -104,4 +106,6 @@ export {
   isAlpha,
   isAlphanumeric,
   isEqual,
+  splitWords,
+  splitByLength,
 };

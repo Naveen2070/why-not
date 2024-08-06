@@ -13,4 +13,6 @@ export {
   isAlpha,
   isAlphanumeric,
   isEqual,
+  splitWords,
+  splitByLength,
 } from './stringMutation';

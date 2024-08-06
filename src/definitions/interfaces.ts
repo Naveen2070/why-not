@@ -9,6 +9,7 @@ interface CompareOptions {
   startsWith?: boolean;
   endsWith?: boolean;
   has?: boolean;
+  ofPattern?: string | RegExp;
 }
 
 export type { FormatterOptions, CompareOptions };

@@ -156,6 +156,7 @@ function unescapeHTML(str: string): string {
     .replace(/&#39;/g, "'"); // Unescape "'"
 }
 
+//3. String validation functions
 /**
  * Checks if a string is a valid number.
  *
@@ -215,6 +216,7 @@ function isAlphanumeric(str: string): boolean {
   return alphanumericRegex.test(str);
 }
 
+//4. String comparison functions
 /**
  * Compares two strings for equality or checks if one starts/ends/contains the other,
  * with optional ignore case option.
@@ -247,16 +249,17 @@ function isEqual(
 
   // Check if the options object has valid properties
   if (options) {
-    const { ignoreCase, startsWith, endsWith, has } = options;
+    const { ignoreCase, startsWith, endsWith, has, ofPattern } = options;
 
     if (
       (ignoreCase !== undefined && typeof ignoreCase !== 'boolean') ||
       (startsWith !== undefined && typeof startsWith !== 'boolean') ||
       (endsWith !== undefined && typeof endsWith !== 'boolean') ||
-      (has !== undefined && typeof has !== 'boolean')
+      (has !== undefined && typeof has !== 'boolean') ||
+      (ofPattern !== undefined && typeof ofPattern !== 'string')
     ) {
       throw new TypeError(
-        'Options must be an object with ignoreCase, startsWith, endsWith, and has properties as booleans'
+        'Options must be an object with ignoreCase, startsWith, endsWith, has properties as booleans and ofPattern as a string'
       );
     }
   }
@@ -282,8 +285,50 @@ function isEqual(
     return str1.endsWith(str2);
   }
 
+  // Check if str1 matches the given pattern
+  if (options?.ofPattern) {
+    const pattern = new RegExp(options.ofPattern);
+    return pattern.test(str1);
+  }
+
   // Return true if the strings are equal (case sensitive)
   return str1 === str2;
+}
+
+//5. String splitting functions
+/**
+ * Splits a string into an array of words.
+ *
+ * @param {string} str - The string to split.
+ * @return {string[]} - An array of words.
+ */
+function splitWords(str: string): string[] {
+  if (typeof str !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
+  return str.split(/\s+/).filter((word) => word.length > 0);
+}
+
+/**
+ * Splits a string into an array of substrings of a specified length.
+ *
+ * @param {string} str - The string to split.
+ * @param {number} length - The length of each substring.
+ * @return {string[]} - An array of substrings.
+ * @throws {TypeError} - If the length is not a positive number.
+ */
+function splitByLength(str: string, length: number): string[] {
+  if (typeof str !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
+  if (typeof length !== 'number' || length <= 0) {
+    throw new TypeError('Length must be a positive number');
+  }
+  const result: string[] = [];
+  for (let i = 0; i < str.length; i += length) {
+    result.push(str.substring(i, i + length));
+  }
+  return result;
 }
 
 //StringMutator Class
@@ -445,6 +490,30 @@ export class StringMutator {
     // Use the isEqual function to compare the strings
     return isEqual(this.str, str2, options);
   }
+
+  //5. String splitting functions|
+
+  /**
+   * Splits a string into an array of words.
+   *
+   * @param {string} str - The string to split.
+   * @return {string[]} - An array of words.
+   */
+  split(): string[] {
+    return splitWords(this.str);
+  }
+
+  /**
+   * Splits a string into an array of substrings of a specified length.
+   *
+   * @param {string} str - The string to split.
+   * @param {number} length - The length of each substring.
+   * @return {string[]} - An array of substrings.
+   * @throws {TypeError} - If the length is not a positive number.
+   */
+  splitByLength(length: number): string[] {
+    return splitByLength(this.str, length);
+  }
 }
 
 export {
@@ -462,4 +531,6 @@ export {
   isAlpha,
   isAlphanumeric,
   isEqual,
+  splitWords,
+  splitByLength,
 };
