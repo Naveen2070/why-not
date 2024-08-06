@@ -14,9 +14,12 @@ import {
   isAlpha,
   isAlphanumeric,
   isEqual,
+  splitWords,
+  splitByLength,
 } from '../../src/index';
 import { StringMutator } from '../../src/index';
 
+// 1. String case conversion functions
 describe('String Case Conversion Functions', () => {
   it('should convert to camelCase', () => {
     expect(toCamelCase('hello-world')).toBe('helloWorld');
@@ -59,6 +62,7 @@ describe('String Case Conversion Functions', () => {
   });
 });
 
+// 2. String manipulation functions
 describe('String Manipulation Functions', () => {
   it('should replace a character at a specific position', () => {
     expect(replaceAt('hello world', 6, 'W')).toBe('hello World');
@@ -85,6 +89,7 @@ describe('String Manipulation Functions', () => {
   });
 });
 
+// 3. String validation functions
 describe('String Validation Functions', () => {
   it('should validate numeric strings', () => {
     expect(isNumeric('123')).toBe(true);
@@ -142,6 +147,7 @@ describe('String Validation Functions', () => {
   });
 });
 
+// 4. String comparison functions
 describe('String Comparison Functions', () => {
   it('should compare strings with case sensitivity', () => {
     expect(isEqual('Hello', 'Hello')).toBe(true);
@@ -229,6 +235,26 @@ describe('String Comparison Functions', () => {
   });
 });
 
+//5. String Splitting Functions
+describe('String Splitting Functions', () => {
+  it('should split a string into words', () => {
+    expect(splitWords('hello world')).toEqual(['hello', 'world']);
+    expect(splitWords('  hello   world  ')).toEqual(['hello', 'world']);
+    expect(splitWords('hello')).toEqual(['hello']);
+    expect(splitWords('')).toEqual([]);
+  });
+
+  it('should split a string into substrings of a specified length', () => {
+    expect(splitByLength('hello', 2)).toEqual(['he', 'll', 'o']);
+    expect(splitByLength('hello', 3)).toEqual(['hel', 'lo']);
+    expect(splitByLength('hello', 5)).toEqual(['hello']);
+    expect(splitByLength('hello', 6)).toEqual(['hello']);
+    expect(() => splitByLength('hello', 0)).toThrow(TypeError);
+    expect(() => splitByLength('hello', -1)).toThrow(TypeError);
+  });
+});
+
+// StringMutator Class Tests
 describe('StringMutator Class', () => {
   it('should convert to camelCase', () => {
     const mutator = new StringMutator('hello-world');
