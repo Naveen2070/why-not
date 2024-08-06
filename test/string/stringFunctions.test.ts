@@ -191,6 +191,20 @@ describe('String Comparison Functions', () => {
     expect(isEqual('Hello', 'World', { has: true })).toBe(false);
   });
 
+  it('should match a string against a pattern', () => {
+    expect(isEqual('Hello', 'He', { ofPattern: 'He' })).toBe(true);
+    expect(isEqual('Hello', 'He', { ofPattern: 'he' })).toBe(false);
+    expect(isEqual('Hello', 'He', { ofPattern: 'he', ignoreCase: true })).toBe(
+      true
+    );
+    expect(isEqual('Hello', '.*llo', { ofPattern: '.*llo' })).toBe(true);
+    expect(isEqual('Hello', '^H.*o$', { ofPattern: '^H.*o$' })).toBe(true);
+    expect(isEqual('Hello', '^h.*o$', { ofPattern: '^h.*o$' })).toBe(false);
+    expect(
+      isEqual('Hello', '^h.*o$', { ofPattern: '^h.*o$', ignoreCase: true })
+    ).toBe(true);
+  });
+
   it('should throw TypeError if input arguments are missing', () => {
     expect(() => isEqual()).toThrow(Error);
     expect(() => isEqual('a')).toThrow(Error);
@@ -206,10 +220,12 @@ describe('String Comparison Functions', () => {
     expect(() => isEqual('a', 'b', 'c')).toThrow(TypeError);
   });
 
-  it('should throw TypeError if options is not an object with ignoreCase, startsWith, and endsWith properties as booleans', () => {
+  it('should throw TypeError if options is not an object with ignoreCase, startsWith, and endsWith properties as booleans and ofPattern as a string', () => {
     expect(() => isEqual('a', 'b', { ignoreCase: 'a' })).toThrow(TypeError);
     expect(() => isEqual('a', 'b', { startsWith: 'a' })).toThrow(TypeError);
     expect(() => isEqual('a', 'b', { endsWith: 'a' })).toThrow(TypeError);
+    expect(() => isEqual('a', 'b', { has: 'a' })).toThrow(TypeError);
+    expect(() => isEqual('a', 'b', { ofPattern: 2 })).toThrow(TypeError);
   });
 });
 
@@ -344,22 +360,48 @@ describe('StringMutator Class', () => {
     );
     expect(new StringMutator('abc').isEqual('b', { has: true })).toBe(true);
     expect(new StringMutator('abc').isEqual('d', { has: false })).toBe(false);
+    expect(new StringMutator('abc').isEqual('a.c', { ofPattern: 'a.c' })).toBe(
+      true
+    );
+    expect(new StringMutator('abc').isEqual('a', { ofPattern: '^a' })).toBe(
+      true
+    );
+    expect(new StringMutator('abc').isEqual('b', { ofPattern: '^b' })).toBe(
+      false
+    );
+    expect(
+      new StringMutator('abc').isEqual('ABC', {
+        ofPattern: 'abc',
+        ignoreCase: true,
+      })
+    ).toBe(true);
     expect(() => new StringMutator('abc').isEqual()).toThrow(Error);
     expect(() => new StringMutator('abc').isEqual(12)).toThrow(TypeError);
     expect(() => new StringMutator('abc').isEqual('def', '12')).toThrow(
       TypeError
     );
     expect(() =>
-      new StringMutator('abc').isEqual('def', { ignoreCase: 12 })
+      new StringMutator('abc').isEqual('def', {
+        ignoreCase: 12 as unknown as boolean,
+      })
     ).toThrow(TypeError);
     expect(() =>
-      new StringMutator('abc').isEqual('def', { startsWith: 12 })
+      new StringMutator('abc').isEqual('def', {
+        startsWith: 12 as unknown as boolean,
+      })
     ).toThrow(TypeError);
     expect(() =>
-      new StringMutator('abc').isEqual('def', { endsWith: 12 })
+      new StringMutator('abc').isEqual('def', {
+        endsWith: 12 as unknown as boolean,
+      })
     ).toThrow(TypeError);
-    expect(() => new StringMutator('abc').isEqual('def', { has: 12 })).toThrow(
-      TypeError
-    );
+    expect(() =>
+      new StringMutator('abc').isEqual('def', { has: 12 as unknown as boolean })
+    ).toThrow(TypeError);
+    expect(() =>
+      new StringMutator('abc').isEqual('def', {
+        ofPattern: 12 as unknown as string,
+      })
+    ).toThrow(TypeError);
   });
 });

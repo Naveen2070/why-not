@@ -247,16 +247,17 @@ function isEqual(
 
   // Check if the options object has valid properties
   if (options) {
-    const { ignoreCase, startsWith, endsWith, has } = options;
+    const { ignoreCase, startsWith, endsWith, has, ofPattern } = options;
 
     if (
       (ignoreCase !== undefined && typeof ignoreCase !== 'boolean') ||
       (startsWith !== undefined && typeof startsWith !== 'boolean') ||
       (endsWith !== undefined && typeof endsWith !== 'boolean') ||
-      (has !== undefined && typeof has !== 'boolean')
+      (has !== undefined && typeof has !== 'boolean') ||
+      (ofPattern !== undefined && typeof ofPattern !== 'string')
     ) {
       throw new TypeError(
-        'Options must be an object with ignoreCase, startsWith, endsWith, and has properties as booleans'
+        'Options must be an object with ignoreCase, startsWith, endsWith, has properties as booleans and ofPattern as a string'
       );
     }
   }
@@ -280,6 +281,12 @@ function isEqual(
   // Check if str1 ends with str2 if endsWith is true
   if (options?.endsWith) {
     return str1.endsWith(str2);
+  }
+
+  // Check if str1 matches the given pattern
+  if (options?.ofPattern) {
+    const pattern = new RegExp(options.ofPattern);
+    return pattern.test(str1);
   }
 
   // Return true if the strings are equal (case sensitive)
