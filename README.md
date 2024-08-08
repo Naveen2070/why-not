@@ -1,4 +1,4 @@
-# Why Not (sitll not available as npm package yet, Under Development)
+# Why Not (Still Under Development)
 
 **Why Not** is a utility library designed to streamline development by providing a collection of reusable methods. It helps reduce redundant code and enhance code readability. This library offers utilities not only for array manipulation but also for operations involving math, dates, strings, and more.
 
@@ -7,11 +7,11 @@
 - **Array Utilities**: Methods for unique values, filtering, mapping, grouping, and more.
 - **Math Utilities**: Functions to simplify common mathematical operations.
 - **Date Utilities**: Helpful functions for date manipulation and formatting.
-- **String Utilities**: Methods for string manipulation and formatting.
+- **String Utilities**: Methods for string manipulation and formatting (Coming Soon).
 
 ## Installation
 
-You can install **Why Not** via npm:
+You can install **Why Not** via npm (not available yet):
 
 ```bash
 npm install why-not
@@ -91,9 +91,7 @@ const formattedDate = DateFormatter(dateStr, { format: 'dd/MM/yyyy' });
 console.log(formattedDate); // 30/07/2023
 ```
 
-### String Utilities
-
-(To be included soon...)
+Refer to the [docs](./docs/Introduction.md) for more information.
 
 ## API
 
