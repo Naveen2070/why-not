@@ -29,7 +29,7 @@ This document provides a guide on using array utility functions from the **Why N
 **Direct Function Usage**:
 
 ```js
-import { toUnique } from 'why-not';
+import { toUnique } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const uniqueNumbers = toUnique(numbers); // [1, 2, 3]
@@ -41,7 +41,7 @@ const uniqueObjects = toUnique(objects); // [{ id: 1 }, { id: 2 }, { id: 3 }]
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(numbers);
 const uniqueNumbers = arrayMutator.toUnique(); // [1, 2, 3]
@@ -57,7 +57,7 @@ const uniqueObjects = objectMutator.toUnique(); // [{ id: 1 }, { id: 2 }, { id: 
 **Direct Function Usage**:
 
 ```js
-import { reproduceTo } from 'why-not';
+import { reproduceTo } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const updatedNumbers = reproduceTo(numbers, 2, (a, b) => a + b); // [3, 4, 4, 5, 3]
@@ -69,7 +69,7 @@ const updatedObjects = reproduceTo(objects, 1, (a, b) => a + b, 'id'); // [{ id:
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(numbers);
 const updatedNumbers = arrayMutator.reproduceTo(2, (a, b) => a + b); // [3, 4, 4, 5, 3]
@@ -85,7 +85,7 @@ const updatedObjects = objectMutator.reproduceTo(1, (a, b) => a + b, 'id'); // [
 **Direct Function Usage**:
 
 ```js
-import { filterBy } from 'why-not';
+import { filterBy } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const filteredNumbers = filterBy(numbers, (n) => n > 1); // [2, 2, 3]
@@ -97,7 +97,7 @@ const filteredObjects = filterBy(objects, (o) => o.id > 1); // [{ id: 2 }, { id:
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(numbers);
 const filteredNumbers = arrayMutator.filterBy((n) => n > 1); // [2, 2, 3]
@@ -113,7 +113,7 @@ const filteredObjects = objectMutator.filterBy((o) => o.id > 1); // [{ id: 2 }, 
 **Direct Function Usage**:
 
 ```js
-import { mapBy } from 'why-not';
+import { mapBy } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const doubledNumbers = mapBy(numbers, (n) => n * 2); // [2, 4, 4, 6, 2]
@@ -125,7 +125,7 @@ const mappedObjects = mapBy(objects, (o) => ({ ...o, id: o.id * 2 })); // [{ id:
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(numbers);
 const doubledNumbers = arrayMutator.mapBy((n) => n * 2); // [2, 4, 4, 6, 2]
@@ -141,7 +141,7 @@ const mappedObjects = objectMutator.mapBy((o) => ({ ...o, id: o.id * 2 })); // [
 **Direct Function Usage**:
 
 ```js
-import { groupBy } from 'why-not';
+import { groupBy } from 'why-not-utils';
 
 const objects = [{ id: 1 }, { id: 2 }, { id: 2 }, { id: 3 }, { id: 1 }];
 const groupedObjects = groupBy(objects, 'id');
@@ -155,7 +155,7 @@ const groupedObjects = groupBy(objects, 'id');
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const objectMutator = new ArrayMutator(objects);
 const groupedObjects = objectMutator.groupBy('id');
@@ -173,7 +173,7 @@ const groupedObjects = objectMutator.groupBy('id');
 **Direct Function Usage**:
 
 ```js
-import { partitionBy } from 'why-not';
+import { partitionBy } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const [evens, odds] = partitionBy(numbers, (n) => n % 2 === 0);
@@ -184,7 +184,7 @@ const [evens, odds] = partitionBy(numbers, (n) => n % 2 === 0);
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(numbers);
 const [evens, odds] = arrayMutator.partitionBy((n) => n % 2 === 0);
@@ -199,7 +199,7 @@ const [evens, odds] = arrayMutator.partitionBy((n) => n % 2 === 0);
 **Direct Function Usage**:
 
 ```js
-import { pluck } from 'why-not';
+import { pluck } from 'why-not-utils';
 
 const objects = [{ id: 1 }, { id: 2 }, { id: 2 }, { id: 3 }, { id: 1 }];
 const ids = pluck(objects, 'id'); // [1, 2, 2, 3, 1]
@@ -208,7 +208,7 @@ const ids = pluck(objects, 'id'); // [1, 2, 2, 3, 1]
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const objectMutator = new ArrayMutator(objects);
 const ids = objectMutator.pluck('id'); // [1, 2, 2, 3, 1]
@@ -221,7 +221,7 @@ const ids = objectMutator.pluck('id'); // [1, 2, 2, 3, 1]
 **Direct Function Usage**:
 
 ```js
-import { compact } from 'why-not';
+import { compact } from 'why-not-utils';
 
 const arrayWithFalsy = [1, 0, 2, false, 3, null, undefined, 'a'];
 const compactedArray = compact(arrayWithFalsy);
@@ -241,7 +241,7 @@ const compactedObjects = compact(objectsWithFalsy, 'id');
 **ArrayMutator Class Usage**:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 
 const arrayMutator = new ArrayMutator(arrayWithFalsy);
 const compactedArray = arrayMutator.compact(); // [1, 2, 3, 'a']
@@ -257,7 +257,7 @@ const compactedObjects = objectMutator.compact('id'); // [{ id: 1 }, { id: 2 }, 
 **Direct Function Usage**:
 
 ```js
-import { sum } from 'why-not';
+import { sum } from 'why-not-utils';
 
 const numbers = [1, 2, 3, 4, 5];
 const total = sum(numbers); // 15
@@ -272,10 +272,10 @@ The `ArrayMutator` class is designed to provide utility methods for manipulating
 
 **Importing the ArrayMutator Class**
 
-To use the `ArrayMutator` class, you need to import it from the `why-not` package:
+To use the `ArrayMutator` class, you need to import it from the `why-not-utils` package:
 
 ```js
-import { ArrayMutator } from 'why-not';
+import { ArrayMutator } from 'why-not-utils';
 ```
 
 ### Methods
@@ -292,7 +292,7 @@ import { ArrayMutator } from 'why-not';
    - Call the `compact` method to remove falsy values.
 
    ```js
-   import { ArrayMutator } from 'why-not';
+   import { ArrayMutator } from 'why-not-utils';
 
    const arrayWithFalsy = [1, 2, null, 3, undefined, 'a'];
    const arrayMutator = new ArrayMutator(arrayWithFalsy);
@@ -305,7 +305,7 @@ import { ArrayMutator } from 'why-not';
    - The `compact` method will filter out objects where the specified key has a falsy value.
 
    ```js
-   import { ArrayMutator } from 'why-not';
+   import { ArrayMutator } from 'why-not-utils';
 
    const objectsWithFalsy = [{ id: 1 }, { id: 2 }, { id: null }, { id: 3 }];
    const objectMutator = new ArrayMutator(objectsWithFalsy);
@@ -324,7 +324,7 @@ import { ArrayMutator } from 'why-not';
    - Call the `sum` method to get the total sum.
 
    ```js
-   import { ArrayMutator } from 'why-not';
+   import { ArrayMutator } from 'why-not-utils';
 
    const numbers = [1, 2, 3, 4, 5];
    const arrayMutator = new ArrayMutator(numbers);
@@ -336,7 +336,7 @@ import { ArrayMutator } from 'why-not';
    - The `sum` method can also handle nested arrays. It will sum up all the numbers across the nested arrays.
 
    ```js
-   import { ArrayMutator } from 'why-not';
+   import { ArrayMutator } from 'why-not-utils';
 
    const arrays = [[1, 2], [3, 4], [5]];
    const arrayOfArraysMutator = new ArrayMutator(arrays);

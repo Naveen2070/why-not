@@ -23,7 +23,7 @@ To use the **Why-not** library in your project, you need to install it via npm (
 2. **Install the Why-not Library**:
    Use the following command to install the **Why-not** library:
    ```sh
-   npm install why-not
+   npm install why-not-utils
    ```
    This will add **Why-not** as a dependency in your `package.json` file and install it in the `node_modules` directory.
 
@@ -36,7 +36,7 @@ To verify that **Why-not** has been installed correctly, you can check the `node
 After installation, you can import the functions and classes from **Why-not** into your project. Here's an example of how to import and use some functions:
 
 ```js
-import { toUnique, filterBy, mapBy } from 'why-not';
+import { toUnique, filterBy, mapBy } from 'why-not-utils';
 
 // Example usage
 const numbers = [1, 2, 2, 3, 1];
@@ -55,7 +55,7 @@ console.log(mappedNumbers); // Output: [2, 4, 4, 6, 2]
 To upgrade to the latest version of **Why-not**, run:
 
 ```sh
-npm update why-not
+npm update why-not-utils
 ```
 
 ### Uninstalling Why-not
@@ -63,7 +63,7 @@ npm update why-not
 If you need to remove **Why-not** from your project, you can uninstall it using:
 
 ```sh
-npm uninstall why-not
+npm uninstall why-not-utils
 ```
 
-For further details and troubleshooting, refer to the [Why-not documentation](introduction.md) or visit the [GitHub repository](https://github.com/Naveen2070/why-not).
+For further details and troubleshooting, refer to the [Why-not documentation](introduction.md) or visit the [GitHub repository](https://github.com/Naveen2070/why-not-utils).

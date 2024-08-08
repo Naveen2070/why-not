@@ -49,7 +49,7 @@ Converts a string to camel case.
 #### Example Usage
 
 ```js
-import { toCamelCase } from 'why-not';
+import { toCamelCase } from 'why-not-utils';
 
 const camelCaseStr = toCamelCase('example-string');
 console.log(camelCaseStr); // Outputs: 'exampleString'
@@ -72,7 +72,7 @@ Converts a string to Pascal case.
 #### Example Usage
 
 ```js
-import { toPascalCase } from 'why-not';
+import { toPascalCase } from 'why-not-utils';
 
 const pascalCaseStr = toPascalCase('example-string');
 console.log(pascalCaseStr); // Outputs: 'ExampleString'
@@ -95,7 +95,7 @@ Converts a string to snake case.
 #### Example Usage
 
 ```js
-import { toSnakeCase } from 'why-not';
+import { toSnakeCase } from 'why-not-utils';
 
 const snakeCaseStr = toSnakeCase('exampleString');
 console.log(snakeCaseStr); // Outputs: 'example_string'
@@ -118,7 +118,7 @@ Converts a string to kebab case.
 #### Example Usage
 
 ```js
-import { toKebabCase } from 'why-not';
+import { toKebabCase } from 'why-not-utils';
 
 const kebabCaseStr = toKebabCase('exampleString');
 console.log(kebabCaseStr); // Outputs: 'example-string'
@@ -141,7 +141,7 @@ Converts a string to Title Case.
 #### Example Usage
 
 ```js
-import { toTitleCase } from 'why-not';
+import { toTitleCase } from 'why-not-utils';
 
 const titleCaseStr = toTitleCase('example string');
 console.log(titleCaseStr); // Outputs: 'Example String'
@@ -170,7 +170,7 @@ Replaces a single character in a string at the specified index with a replacemen
 #### Example Usage
 
 ```js
-import { replaceAt } from 'why-not';
+import { replaceAt } from 'why-not-utils';
 
 const replacedStr = replaceAt('example', 3, 'z');
 console.log(replacedStr); // Outputs: 'exazmple'
@@ -193,7 +193,7 @@ Escapes special HTML characters in a string.
 #### Example Usage
 
 ```js
-import { escapeHTML } from 'why-not';
+import { escapeHTML } from 'why-not-utils';
 
 const escapedStr = escapeHTML('<div>example</div>');
 console.log(escapedStr); // Outputs: '&lt;div&gt;example&lt;/div&gt;'
@@ -216,7 +216,7 @@ Unescapes special HTML characters in a string.
 #### Example Usage
 
 ```js
-import { unescapeHTML } from 'why-not';
+import { unescapeHTML } from 'why-not-utils';
 
 const unescapedStr = unescapeHTML('&lt;div&gt;example&lt;/div&gt;');
 console.log(unescapedStr); // Outputs: '<div>example</div>'
@@ -239,7 +239,7 @@ Checks if a string is a valid number.
 #### Example Usage
 
 ```js
-import { isNumeric } from 'why-not';
+import { isNumeric } from 'why-not-utils';
 
 const isNum = isNumeric('12345');
 console.log(isNum); // Outputs: true
@@ -262,7 +262,7 @@ Checks if a string is a valid email address.
 #### Example Usage
 
 ```js
-import { isEmail } from 'why-not';
+import { isEmail } from 'why-not-utils';
 
 const isValidEmail = isEmail('example@example.com');
 console.log(isValidEmail); // Outputs: true
@@ -285,7 +285,7 @@ Checks if a string is a valid URL.
 #### Example Usage
 
 ```js
-import { isURL } from 'why-not';
+import { isURL } from 'why-not-utils';
 
 const isValidURL = isURL('https://www.example.com');
 console.log(isValidURL); // Outputs: true
@@ -308,7 +308,7 @@ Checks if a string contains only alphabetic characters.
 #### Example Usage
 
 ```js
-import { isAlpha } from 'why-not';
+import { isAlpha } from 'why-not-utils';
 
 const isOnlyAlpha = isAlpha('example');
 console.log(isOnlyAlpha); // Outputs: true
@@ -331,7 +331,7 @@ Checks if a string contains only alphanumeric characters.
 #### Example Usage
 
 ```js
-import { isAlphanumeric } from 'why-not';
+import { isAlphanumeric } from 'why-not-utils';
 
 const isOnlyAlphanumeric = isAlphanumeric('example123');
 console.log(isOnlyAlphanumeric); // Outputs: true
@@ -354,7 +354,7 @@ Splits a string into an array of words.
 #### Example Usage
 
 ```js
-import { splitWords } from 'why-not';
+import { splitWords } from 'why-not-utils';
 
 const words = splitWords('This is an example string');
 console.log(words); // Outputs: ['This', 'is', 'an', 'example', 'string']
@@ -380,7 +380,7 @@ Splits a string into an array of substrings of a specified length.
 #### Example Usage
 
 ```js
-import { splitByLength } from 'why-not';
+import { splitByLength } from 'why-not-utils';
 
 const substrings = splitByLength('exampleString', 3);
 console.log(substrings); // Outputs: ['exa', 'mpl', 'eSt', 'rin', 'g']
@@ -409,7 +409,7 @@ Compares two strings based on provided options.
 #### Example Usage
 
 ```js
-import { isEqual } from 'why-not';
+import { isEqual } from 'why-not-utils';
 
 const areEqual = isEqual('example', 'Example', { ignoreCase: true });
 console.log(areEqual); // Outputs: true
@@ -460,7 +460,7 @@ The `StringMutator` class provides methods for mutating a string in various ways
 ### Example Usage
 
 ```js
-import { StringMutator } from 'why-not';
+import { StringMutator } from 'why-not-utils';
 
 const mutator = new StringMutator('example-string');
 

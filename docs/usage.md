@@ -11,7 +11,7 @@ The **Why-not** library offers several methods to perform common operations on a
 This method returns an array with only unique values, removing duplicates.
 
 ```js
-import { toUnique } from 'why-not';
+import { toUnique } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 2, 2, 3, 1];
@@ -29,7 +29,7 @@ console.log(uniqueObjects); // Output: [{ id: 1 }, { id: 2 }, { id: 3 }]
 This method applies a specified operation to array elements and uses a provided value to determine the operation.
 
 ```js
-import { reproduceTo } from 'why-not';
+import { reproduceTo } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 2, 2, 3, 1];
@@ -47,7 +47,7 @@ console.log(updatedObjects); // Output: [{ id: 2 }, { id: 3 }, { id: 3 }, { id: 
 Filters elements of an array based on a provided predicate function.
 
 ```js
-import { filterBy } from 'why-not';
+import { filterBy } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 2, 2, 3, 1];
@@ -65,7 +65,7 @@ console.log(filteredObjects); // Output: [{ id: 2 }, { id: 2 }, { id: 3 }]
 Transforms each element of an array according to a provided callback function.
 
 ```js
-import { mapBy } from 'why-not';
+import { mapBy } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 2, 2, 3, 1];
@@ -83,7 +83,7 @@ console.log(mappedObjects); // Output: [{ id: 2 }, { id: 4 }, { id: 4 }, { id: 6
 Groups elements of an array by a specified key or property.
 
 ```js
-import { groupBy } from 'why-not';
+import { groupBy } from 'why-not-utils';
 
 // Example with objects
 const objects = [{ id: 1 }, { id: 2 }, { id: 2 }, { id: 3 }, { id: 1 }];
@@ -102,7 +102,7 @@ console.log(groupedObjects);
 Partitions elements of an array into two groups based on a predicate function.
 
 ```js
-import { partitionBy } from 'why-not';
+import { partitionBy } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 2, 2, 3, 1];
@@ -122,7 +122,7 @@ console.log(lessOrEqualOne); // Output: [{ id: 1 }, { id: 1 }]
 Extracts values from an array of objects based on a specified key.
 
 ```js
-import { pluck } from 'why-not';
+import { pluck } from 'why-not-utils';
 
 // Example with objects
 const objects = [{ id: 1 }, { id: 2 }, { id: 2 }, { id: 3 }, { id: 1 }];
@@ -135,7 +135,7 @@ console.log(ids); // Output: [1, 2, 2, 3, 1]
 Removes falsy values from an array, or from an array of objects based on a key.
 
 ```js
-import { compact } from 'why-not';
+import { compact } from 'why-not-utils';
 
 // Example with numbers
 const numbers = [1, 0, 2, false, 3, null, undefined, 'a'];
