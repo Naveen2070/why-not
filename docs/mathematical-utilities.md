@@ -31,7 +31,7 @@ This document provides a guide on using mathematical utility functions from the 
 **Direct Function Usage**:
 
 ```js
-import { gcd } from 'why-not';
+import { gcd } from 'why-not-utils';
 
 const result = gcd(48, 18); // 6
 ```
@@ -48,7 +48,7 @@ const result = gcd(48, 18); // 6
 **Direct Function Usage**:
 
 ```js
-import { lcm } from 'why-not';
+import { lcm } from 'why-not-utils';
 
 const result = lcm(12, 15); // 60
 ```
@@ -65,7 +65,7 @@ const result = lcm(12, 15); // 60
 **Direct Function Usage**:
 
 ```js
-import { isPrime } from 'why-not';
+import { isPrime } from 'why-not-utils';
 
 const result = isPrime(7); // true
 ```
@@ -82,7 +82,7 @@ const result = isPrime(7); // true
 **Direct Function Usage**:
 
 ```js
-import { factorial } from 'why-not';
+import { factorial } from 'why-not-utils';
 
 const result = factorial(5); // 120
 ```
@@ -98,7 +98,7 @@ const result = factorial(5); // 120
 **Direct Function Usage**:
 
 ```js
-import { fibonacci } from 'why-not';
+import { fibonacci } from 'why-not-utils';
 
 const result = fibonacci(6); // 8
 ```
@@ -114,7 +114,7 @@ const result = fibonacci(6); // 8
 **Direct Function Usage**:
 
 ```js
-import { mean } from 'why-not';
+import { mean } from 'why-not-utils';
 
 const result = mean([1, 2, 3, 4, 5]); // 3
 ```
@@ -130,7 +130,7 @@ const result = mean([1, 2, 3, 4, 5]); // 3
 **Direct Function Usage**:
 
 ```js
-import { median } from 'why-not';
+import { median } from 'why-not-utils';
 
 const result = median([1, 2, 3, 4, 5]); // 3
 ```
@@ -147,7 +147,7 @@ const result = median([1, 2, 3, 4, 5]); // 3
 **Direct Function Usage**:
 
 ```js
-import { mode } from 'why-not';
+import { mode } from 'why-not-utils';
 
 const result = mode([1, 2, 2, 3, 3, 3]); // [3]
 ```
@@ -163,7 +163,7 @@ const result = mode([1, 2, 2, 3, 3, 3]); // [3]
 **Direct Function Usage**:
 
 ```js
-import { standardDeviation } from 'why-not';
+import { standardDeviation } from 'why-not-utils';
 
 const result = standardDeviation([1, 2, 3, 4, 5]); // 1.5811
 ```
@@ -179,7 +179,7 @@ const result = standardDeviation([1, 2, 3, 4, 5]); // 1.5811
 **Direct Function Usage**:
 
 ```js
-import { range } from 'why-not';
+import { range } from 'why-not-utils';
 
 const result = range([1, 2, 3, 4, 5]); // 4
 ```
@@ -196,7 +196,7 @@ const result = range([1, 2, 3, 4, 5]); // 4
 **Direct Function Usage**:
 
 ```js
-import { roundTo } from 'why-not';
+import { roundTo } from 'why-not-utils';
 
 const result = roundTo(3.14159, 2); // 3.14
 ```
@@ -226,7 +226,7 @@ The `MathMutator` class provides a set of math functions wrapped in a class for 
 **Example Usage**:
 
 ```js
-import { MathMutator } from 'why-not';
+import { MathMutator } from 'why-not-utils';
 
 const mathMutator = new MathMutator([1, 2, 3, 4, 5]);
 

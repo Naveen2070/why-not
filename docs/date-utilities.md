@@ -46,7 +46,7 @@ Formats a date string based on provided formatter options or defaults to ISO for
 #### Example Usage
 
 ```js
-import { DateFormatter } from 'why-not';
+import { DateFormatter } from 'why-not-utils';
 
 // Format a date string to a specific format
 const formattedDate = DateFormatter('2024-08-08T14:30:00Z', {
@@ -91,7 +91,7 @@ Formats a timestamp based on provided formatter options including timezones.
 #### Example Usage
 
 ```js
-import { FormatTimeStamp } from 'why-not';
+import { FormatTimeStamp } from 'why-not-utils';
 
 // Format a timestamp to a specific format
 const formattedTimestamp = FormatTimeStamp('2024-08-08T14:30:00Z', {

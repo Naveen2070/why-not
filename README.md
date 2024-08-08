@@ -14,7 +14,7 @@
 You can install **Why Not** via npm (not available yet):
 
 ```bash
-npm install why-not
+npm install why-not-utils
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ Here are some examples of how to use **Why Not**:
 ### Array Utilities
 
 ```js
-import { toUnique, filterBy, mapBy, groupBy, compact } from 'why-not';
+import { toUnique, filterBy, mapBy, groupBy, compact } from 'why-not-utils';
 
 const numbers = [1, 2, 2, 3, 1];
 const uniqueNumbers = toUnique(numbers); // [1, 2, 3]
@@ -54,7 +54,7 @@ import {
   range,
   roundTo,
   MathMutator,
-} from 'why-not';
+} from 'why-not-utils';
 
 const a = 12;
 const b = 15;
@@ -86,7 +86,7 @@ console.log(mathMutator.roundTo(1.23456789, 4)); // 1.2346
 ### Date Utilities
 
 ```js
-import { DateFormatter } from 'why-not';
+import { DateFormatter } from 'why-not-utils';
 const formattedDate = DateFormatter(dateStr, { format: 'dd/MM/yyyy' });
 console.log(formattedDate); // 30/07/2023
 ```
