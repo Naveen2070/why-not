@@ -1,5 +1,5 @@
 {
-  "name": "@JS-utils/why-not",
+  "name": "why_not",
   "version": "0.1.0",
   "description": "A utility library designed to reduce redundant code and improve development efficiency by providing a set of reusable methods. Beyond array manipulation, this package includes utilities for math operations, date handling, string manipulation, and more. Streamline your code and enhance readability with this comprehensive toolkit.",
   "main": "dist/index.js",
