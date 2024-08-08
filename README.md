@@ -86,14 +86,7 @@ console.log(mathMutator.roundTo(1.23456789, 4)); // 1.2346
 ### Date Utilities
 
 ```js
-import { formatDate, parseDate, DateFormatter } from 'why-not';
-
-const dateStr = '2023-07-30T15:30:00.000Z';
-console.log(formatDate(new Date(dateStr), 'dd/MM/yyyy')); // 30/07/2023
-
-const parsedDate = parseDate(dateStr, 'yyyy-MM-dd');
-console.log(parsedDate); // 2023-07-30
-
+import { DateFormatter } from 'why-not';
 const formattedDate = DateFormatter(dateStr, { format: 'dd/MM/yyyy' });
 console.log(formattedDate); // 30/07/2023
 ```

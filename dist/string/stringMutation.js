@@ -15,6 +15,8 @@ exports.isURL = isURL;
 exports.isAlpha = isAlpha;
 exports.isAlphanumeric = isAlphanumeric;
 exports.isEqual = isEqual;
+exports.splitWords = splitWords;
+exports.splitByLength = splitByLength;
 //1.String Case Conversions
 /**
  * Converts a string to camel case.
@@ -156,6 +158,7 @@ function unescapeHTML(str) {
         .replace(/&quot;/g, '"') // Unescape '"'
         .replace(/&#39;/g, "'"); // Unescape "'"
 }
+//3. String validation functions
 /**
  * Checks if a string is a valid number.
  *
@@ -209,6 +212,7 @@ function isAlphanumeric(str) {
     const alphanumericRegex = /^[a-zA-Z0-9]+$/;
     return alphanumericRegex.test(str);
 }
+//4. String comparison functions
 /**
  * Compares two strings for equality or checks if one starts/ends/contains the other,
  * with optional ignore case option.
@@ -267,6 +271,40 @@ function isEqual(str1, str2, options) {
     }
     // Return true if the strings are equal (case sensitive)
     return str1 === str2;
+}
+//5. String splitting functions
+/**
+ * Splits a string into an array of words.
+ *
+ * @param {string} str - The string to split.
+ * @return {string[]} - An array of words.
+ */
+function splitWords(str) {
+    if (typeof str !== 'string') {
+        throw new TypeError('Input must be a string');
+    }
+    return str.split(/\s+/).filter((word) => word.length > 0);
+}
+/**
+ * Splits a string into an array of substrings of a specified length.
+ *
+ * @param {string} str - The string to split.
+ * @param {number} length - The length of each substring.
+ * @return {string[]} - An array of substrings.
+ * @throws {TypeError} - If the length is not a positive number.
+ */
+function splitByLength(str, length) {
+    if (typeof str !== 'string') {
+        throw new TypeError('Input must be a string');
+    }
+    if (typeof length !== 'number' || length <= 0) {
+        throw new TypeError('Length must be a positive number');
+    }
+    const result = [];
+    for (let i = 0; i < str.length; i += length) {
+        result.push(str.substring(i, i + length));
+    }
+    return result;
 }
 //StringMutator Class
 /**
@@ -407,6 +445,27 @@ class StringMutator {
     isEqual(str2, options) {
         // Use the isEqual function to compare the strings
         return isEqual(this.str, str2, options);
+    }
+    //5. String splitting functions|
+    /**
+     * Splits a string into an array of words.
+     *
+     * @param {string} str - The string to split.
+     * @return {string[]} - An array of words.
+     */
+    split() {
+        return splitWords(this.str);
+    }
+    /**
+     * Splits a string into an array of substrings of a specified length.
+     *
+     * @param {string} str - The string to split.
+     * @param {number} length - The length of each substring.
+     * @return {string[]} - An array of substrings.
+     * @throws {TypeError} - If the length is not a positive number.
+     */
+    splitByLength(length) {
+        return splitByLength(this.str, length);
     }
 }
 exports.StringMutator = StringMutator;

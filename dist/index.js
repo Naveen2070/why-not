@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isEqual = exports.isAlphanumeric = exports.isAlpha = exports.isURL = exports.isEmail = exports.isNumeric = exports.unescapeHTML = exports.escapeHTML = exports.replaceAt = exports.toTitleCase = exports.toKebabCase = exports.toSnakeCase = exports.toPascalCase = exports.toCamelCase = exports.StringMutator = exports.StringFunctions = exports.FormatTimeStamp = exports.DateFormatter = exports.DateFunctions = exports.roundTo = exports.range = exports.standardDeviation = exports.mode = exports.median = exports.mean = exports.fibonacci = exports.factorial = exports.isPrime = exports.lcm = exports.gcd = exports.MathMutator = exports.MathFunctions = exports.sum = exports.compact = exports.pluck = exports.partitionBy = exports.groupBy = exports.mapBy = exports.filterBy = exports.reproduceTo = exports.toUnique = exports.ArrayMutator = exports.ArrayFunctions = void 0;
+exports.splitByLength = exports.splitWords = exports.isEqual = exports.isAlphanumeric = exports.isAlpha = exports.isURL = exports.isEmail = exports.isNumeric = exports.unescapeHTML = exports.escapeHTML = exports.replaceAt = exports.toTitleCase = exports.toKebabCase = exports.toSnakeCase = exports.toPascalCase = exports.toCamelCase = exports.StringMutator = exports.StringFunctions = exports.FormatTimeStamp = exports.DateFormatter = exports.DateFunctions = exports.roundTo = exports.range = exports.standardDeviation = exports.mode = exports.median = exports.mean = exports.fibonacci = exports.factorial = exports.isPrime = exports.lcm = exports.gcd = exports.MathMutator = exports.MathFunctions = exports.sum = exports.compact = exports.pluck = exports.partitionBy = exports.groupBy = exports.mapBy = exports.filterBy = exports.reproduceTo = exports.toUnique = exports.ArrayMutator = exports.ArrayFunctions = void 0;
 //Namespace Imports
 const ArrayFunctions = __importStar(require("./array/index"));
 exports.ArrayFunctions = ArrayFunctions;
@@ -74,6 +74,8 @@ Object.defineProperty(exports, "isURL", { enumerable: true, get: function () { r
 Object.defineProperty(exports, "isAlpha", { enumerable: true, get: function () { return index_4.isAlpha; } });
 Object.defineProperty(exports, "isAlphanumeric", { enumerable: true, get: function () { return index_4.isAlphanumeric; } });
 Object.defineProperty(exports, "isEqual", { enumerable: true, get: function () { return index_4.isEqual; } });
+Object.defineProperty(exports, "splitWords", { enumerable: true, get: function () { return index_4.splitWords; } });
+Object.defineProperty(exports, "splitByLength", { enumerable: true, get: function () { return index_4.splitByLength; } });
 //Mutators Imports
 const main_1 = require("./mutators/main");
 Object.defineProperty(exports, "ArrayMutator", { enumerable: true, get: function () { return main_1.ArrayMutator; } });

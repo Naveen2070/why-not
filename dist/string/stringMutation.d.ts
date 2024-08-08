@@ -107,6 +107,22 @@ declare function isAlphanumeric(str: string): boolean;
  */
 declare function isEqual(str1: string, str2: string, options?: CompareOptions): boolean;
 /**
+ * Splits a string into an array of words.
+ *
+ * @param {string} str - The string to split.
+ * @return {string[]} - An array of words.
+ */
+declare function splitWords(str: string): string[];
+/**
+ * Splits a string into an array of substrings of a specified length.
+ *
+ * @param {string} str - The string to split.
+ * @param {number} length - The length of each substring.
+ * @return {string[]} - An array of substrings.
+ * @throws {TypeError} - If the length is not a positive number.
+ */
+declare function splitByLength(str: string, length: number): string[];
+/**
  * Class for mutating a string in various ways.
  */
 export declare class StringMutator {
@@ -202,6 +218,22 @@ export declare class StringMutator {
      * @return {boolean} - True if the strings match the criteria, false otherwise.
      */
     isEqual(str2: string, options?: CompareOptions): boolean;
+    /**
+     * Splits a string into an array of words.
+     *
+     * @param {string} str - The string to split.
+     * @return {string[]} - An array of words.
+     */
+    split(): string[];
+    /**
+     * Splits a string into an array of substrings of a specified length.
+     *
+     * @param {string} str - The string to split.
+     * @param {number} length - The length of each substring.
+     * @return {string[]} - An array of substrings.
+     * @throws {TypeError} - If the length is not a positive number.
+     */
+    splitByLength(length: number): string[];
 }
-export { toCamelCase, toPascalCase, toSnakeCase, toKebabCase, toTitleCase, replaceAt, escapeHTML, unescapeHTML, isNumeric, isEmail, isURL, isAlpha, isAlphanumeric, isEqual, };
+export { toCamelCase, toPascalCase, toSnakeCase, toKebabCase, toTitleCase, replaceAt, escapeHTML, unescapeHTML, isNumeric, isEmail, isURL, isAlpha, isAlphanumeric, isEqual, splitWords, splitByLength, };
 //# sourceMappingURL=stringMutation.d.ts.map
