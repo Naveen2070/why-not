@@ -8,7 +8,7 @@ interface CompareOptions {
     startsWith?: boolean;
     endsWith?: boolean;
     has?: boolean;
-    ofPattern?: RegExp;
+    ofPattern?: string | RegExp;
 }
 export type { FormatterOptions, CompareOptions };
 //# sourceMappingURL=interfaces.d.ts.map
