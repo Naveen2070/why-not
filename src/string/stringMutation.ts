@@ -1,4 +1,4 @@
-import { CompareOptions } from '../definitions/interfaces';
+import { CompareOptions, MaskOptions } from '../definitions/interfaces';
 
 //1.String Case Conversions
 
@@ -331,6 +331,87 @@ function splitByLength(str: string, length: number): string[] {
   return result;
 }
 
+//6. Miscellaneous String functions
+/**
+ * Generates a random string of a specified length.
+ *
+ * @param {number} length - The length of the random string to generate.
+ * @return {string} - A random string of the specified length.
+ * @throws {TypeError} - If the length is not a positive number.
+ */
+function randomString(length: number): string {
+  if (typeof length !== 'number' || length <= 0) {
+    throw new TypeError('Length must be a positive number');
+  }
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+/**
+ * Checks if a string is a palindrome.
+ *
+ * @param {string} str - The string to check.
+ * @return {boolean} - True if the string is a palindrome, false otherwise.
+ */
+function isPalindrome(str: string): boolean {
+  if (typeof str !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
+  const sanitizedStr = str.replace(/\s+/g, '').toLowerCase();
+  const reversedStr = sanitizedStr.split('').reverse().join('');
+  return sanitizedStr === reversedStr;
+}
+
+/**
+ * Removes all whitespace characters from a string.
+ *
+ * @param {string} str - The string to process.
+ * @return {string} - The string without any whitespace characters.
+ */
+function removeWhitespace(str: string): string {
+  if (typeof str !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
+  return str.replace(/\s+/g, '');
+}
+
+/**
+ * Masks a portion of a string with a specified character.
+ *
+ * @param {string} str - The string to mask.
+ * @param {MaskOptions} [options] - Optional masking options.
+ * @return {string} - The masked string.
+ * @throws {TypeError} - If start or end are not numbers or if maskChar is not a string.
+ * @throws {RangeError} - If start or end are out of bounds.
+ */
+function maskString(str: string, options: MaskOptions = {}): string {
+  const { start = 0, end = str.length - 1, maskChar = '*' } = options;
+
+  if (typeof str !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
+  if (typeof start !== 'number' || typeof end !== 'number') {
+    throw new TypeError('Start and end must be valid numbers');
+  }
+  if (typeof maskChar !== 'string' || maskChar.length !== 1) {
+    throw new TypeError('Mask character must be a single character string');
+  }
+  if (start < 0 || end > str.length || start > end) {
+    throw new RangeError('Invalid start or end indices');
+  }
+
+  return (
+    str.substring(0, start) +
+    maskChar.repeat(end - start + 1) +
+    str.substring(end + 1)
+  );
+}
+
 //StringMutator Class
 /**
  * Class for mutating a string in various ways.
@@ -491,7 +572,7 @@ export class StringMutator {
     return isEqual(this.str, str2, options);
   }
 
-  //5. String splitting functions|
+  //5. String splitting functions
 
   /**
    * Splits a string into an array of words.
@@ -514,6 +595,52 @@ export class StringMutator {
   splitByLength(length: number): string[] {
     return splitByLength(this.str, length);
   }
+
+  // 6. Miscellaneous String functions
+
+  /**
+   * Generates a random string of a specified length.
+   *
+   * @param {number} length - The length of the random string to generate.
+   * @return {string} - A random string of the specified length.
+   * @throws {TypeError} - If the length is not a positive number.
+   */
+  randomString(length: number): string {
+    return randomString(length);
+  }
+
+  /**
+   * Checks if a string is a palindrome.
+   *
+   * @param {string} str - The string to check.
+   * @return {boolean} - True if the string is a palindrome, false otherwise.
+   */
+  isPalindrome(): boolean {
+    return isPalindrome(this.str);
+  }
+
+  /**
+   * Removes all whitespace characters from a string.
+   *
+   * @param {string} str - The string to process.
+   * @return {string} - The string without any whitespace characters.
+   */
+  removeWhitespace(): string {
+    return removeWhitespace(this.str);
+  }
+
+  /**
+   * Masks a portion of a string with a specified character.
+   *
+   * @param {string} str - The string to mask.
+   * @param {MaskOptions} [options] - Optional masking options.
+   * @return {string} - The masked string.
+   * @throws {TypeError} - If start or end are not numbers or if maskChar is not a string.
+   * @throws {RangeError} - If start or end are out of bounds.
+   */
+  maskString(options?: MaskOptions): string {
+    return maskString(this.str, options);
+  }
 }
 
 export {
@@ -533,4 +660,8 @@ export {
   isEqual,
   splitWords,
   splitByLength,
+  randomString,
+  isPalindrome,
+  removeWhitespace,
+  maskString,
 };

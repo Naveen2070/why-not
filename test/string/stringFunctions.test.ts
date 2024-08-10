@@ -254,6 +254,69 @@ describe('String Splitting Functions', () => {
   });
 });
 
+//6. Miscellaneous String Function
+describe('maskString Function', () => {
+  it('should mask the entire string with default options', () => {
+    expect(maskString('Hello, World!')).toBe('*************');
+  });
+
+  it('should mask a portion of the string with the specified start and end indices', () => {
+    expect(maskString('Hello, World!', { start: 7, end: 11 })).toBe(
+      'Hello, *****!'
+    );
+    expect(maskString('Hello, World!', { start: 0, end: 4 })).toBe(
+      '***** World!'
+    );
+    expect(maskString('Hello, World!', { start: 6, end: 6 })).toBe(
+      'Hello,*World!'
+    );
+  });
+
+  it('should mask a portion of the string with a custom mask character', () => {
+    expect(
+      maskString('Hello, World!', { start: 7, end: 11, maskChar: '#' })
+    ).toBe('Hello, #####!');
+    expect(
+      maskString('Hello, World!', { start: 0, end: 4, maskChar: '#' })
+    ).toBe('##### World!');
+  });
+
+  it('should throw a TypeError if the input string is not a string', () => {
+    expect(() => maskString(12345 as unknown as string)).toThrow(TypeError);
+  });
+
+  it('should throw a TypeError if start or end are not numbers', () => {
+    expect(() =>
+      maskString('Hello, World!', { start: '7' as unknown as number })
+    ).toThrow(TypeError);
+    expect(() =>
+      maskString('Hello, World!', { end: '11' as unknown as number })
+    ).toThrow(TypeError);
+  });
+
+  it('should throw a TypeError if maskChar is not a string', () => {
+    expect(() =>
+      maskString('Hello, World!', { maskChar: 123 as unknown as string })
+    ).toThrow(TypeError);
+  });
+
+  it('should throw a RangeError if start or end are out of bounds', () => {
+    expect(() => maskString('Hello, World!', { start: -1 })).toThrow(
+      RangeError
+    );
+    expect(() => maskString('Hello, World!', { end: 20 })).toThrow(RangeError);
+    expect(() => maskString('Hello, World!', { start: 10, end: 5 })).toThrow(
+      RangeError
+    );
+  });
+
+  it('should return the original string if start and end are out of bounds but equal', () => {
+    expect(maskString('Hello, World!', { start: 6, end: 6 })).toBe(
+      'Hello,*World!'
+    );
+  });
+});
+
 // StringMutator Class Tests
 describe('StringMutator Class', () => {
   it('should convert to camelCase', () => {
