@@ -47,6 +47,10 @@ import {
   isEqual,
   splitWords,
   splitByLength,
+  randomString,
+  isPalindrome,
+  removeWhitespace,
+  maskString,
 } from './string/index';
 
 //Mutators Imports
@@ -108,4 +112,8 @@ export {
   isEqual,
   splitWords,
   splitByLength,
+  randomString,
+  isPalindrome,
+  removeWhitespace,
+  maskString,
 };

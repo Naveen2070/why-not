@@ -16,6 +16,10 @@ import {
   isEqual,
   splitWords,
   splitByLength,
+  randomString,
+  isPalindrome,
+  removeWhitespace,
+  maskString,
 } from '../../src/index';
 import { StringMutator } from '../../src/index';
 
@@ -265,7 +269,7 @@ describe('maskString Function', () => {
       'Hello, *****!'
     );
     expect(maskString('Hello, World!', { start: 0, end: 4 })).toBe(
-      '***** World!'
+      '*****, World!'
     );
     expect(maskString('Hello, World!', { start: 6, end: 6 })).toBe(
       'Hello,*World!'
@@ -278,7 +282,7 @@ describe('maskString Function', () => {
     ).toBe('Hello, #####!');
     expect(
       maskString('Hello, World!', { start: 0, end: 4, maskChar: '#' })
-    ).toBe('##### World!');
+    ).toBe('#####, World!');
   });
 
   it('should throw a TypeError if the input string is not a string', () => {

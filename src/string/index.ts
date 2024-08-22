@@ -15,4 +15,8 @@ export {
   isEqual,
   splitWords,
   splitByLength,
+  randomString,
+  isPalindrome,
+  removeWhitespace,
+  maskString,
 } from './stringMutation';
