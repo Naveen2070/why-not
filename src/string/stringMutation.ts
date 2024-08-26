@@ -321,9 +321,17 @@ function splitByLength(str: string, length: number): string[] {
   if (typeof str !== 'string') {
     throw new TypeError('Input must be a string');
   }
-  if (typeof length !== 'number' || length <= 0) {
+
+  if (typeof length !== 'number' || length <= 0 || !Number.isInteger(length)) {
     throw new TypeError('Length must be a positive number');
   }
+
+  if (length > str.length) {
+    throw new RangeError(
+      'Length cannot be greater than the length of the string'
+    );
+  }
+
   const result: string[] = [];
   for (let i = 0; i < str.length; i += length) {
     result.push(str.substring(i, i + length));
@@ -340,7 +348,12 @@ function splitByLength(str: string, length: number): string[] {
  * @throws {TypeError} - If the length is not a positive number.
  */
 function randomString(length: number): string {
-  if (typeof length !== 'number' || length <= 0) {
+  if (typeof length !== 'number') {
+    throw new TypeError('Length must be a number');
+  }
+
+  //must be a positive and integer
+  if (length <= 0 || !Number.isInteger(length)) {
     throw new TypeError('Length must be a positive number');
   }
   const characters =
@@ -359,9 +372,11 @@ function randomString(length: number): string {
  * @return {boolean} - True if the string is a palindrome, false otherwise.
  */
 function isPalindrome(str: string): boolean {
-  if (typeof str !== 'string') {
-    throw new TypeError('Input must be a string');
+  if (typeof str !== 'string' || str.length <= 0) {
+    throw new TypeError('Input must be a vaild string');
   }
+  if (str.length === 1) return true;
+
   const sanitizedStr = str.replace(/\s+/g, '').toLowerCase();
   const reversedStr = sanitizedStr.split('').reverse().join('');
   return sanitizedStr === reversedStr;
@@ -374,8 +389,8 @@ function isPalindrome(str: string): boolean {
  * @return {string} - The string without any whitespace characters.
  */
 function removeWhitespace(str: string): string {
-  if (typeof str !== 'string') {
-    throw new TypeError('Input must be a string');
+  if (typeof str !== 'string' || str.length <= 0) {
+    throw new TypeError('Input must be a vaild string');
   }
   return str.replace(/\s+/g, '');
 }
@@ -580,7 +595,7 @@ export class StringMutator {
    * @param {string} str - The string to split.
    * @return {string[]} - An array of words.
    */
-  split(): string[] {
+  splitWords(): string[] {
     return splitWords(this.str);
   }
 
@@ -604,6 +619,7 @@ export class StringMutator {
    * @param {number} length - The length of the random string to generate.
    * @return {string} - A random string of the specified length.
    * @throws {TypeError} - If the length is not a positive number.
+   * @throws {Error} - If the length is not a number.
    */
   randomString(length: number): string {
     return randomString(length);

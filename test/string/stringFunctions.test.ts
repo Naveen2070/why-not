@@ -246,19 +246,93 @@ describe('String Splitting Functions', () => {
     expect(splitWords('  hello   world  ')).toEqual(['hello', 'world']);
     expect(splitWords('hello')).toEqual(['hello']);
     expect(splitWords('')).toEqual([]);
+    expect(() => splitWords()).toThrow(TypeError);
+    expect(splitWords('a')).toEqual(['a']);
   });
 
   it('should split a string into substrings of a specified length', () => {
     expect(splitByLength('hello', 2)).toEqual(['he', 'll', 'o']);
     expect(splitByLength('hello', 3)).toEqual(['hel', 'lo']);
     expect(splitByLength('hello', 5)).toEqual(['hello']);
-    expect(splitByLength('hello', 6)).toEqual(['hello']);
+  });
+
+  it('should throw TypeError if input argument is not a string or length is not a positive number', () => {
     expect(() => splitByLength('hello', 0)).toThrow(TypeError);
     expect(() => splitByLength('hello', -1)).toThrow(TypeError);
+    expect(() => splitByLength('hello', 1.5)).toThrow(TypeError);
+    expect(() => splitByLength('hello', 'a')).toThrow(TypeError);
+    expect(() => splitByLength('hello', [])).toThrow(TypeError);
+    expect(() => splitByLength('hello', {})).toThrow(TypeError);
+    expect(() => splitByLength('hello', null)).toThrow(TypeError);
+    expect(() => splitByLength('hello', undefined)).toThrow(TypeError);
+    expect(() => splitByLength('hello', NaN)).toThrow(TypeError);
+    expect(() => splitByLength('hello', Infinity)).toThrow(TypeError);
+    expect(() => splitByLength('hello', -Infinity)).toThrow(TypeError);
+    expect(() => splitByLength(null, 2)).toThrow(TypeError);
+    expect(() => splitByLength(undefined, 2)).toThrow(TypeError);
+    expect(() => splitByLength(NaN, 2)).toThrow(TypeError);
+    expect(() => splitByLength(Infinity, 2)).toThrow(TypeError);
+    expect(() => splitByLength(-Infinity, 2)).toThrow(TypeError);
+  });
+
+  it('should throw rangeErrorwhen length is greater than the length of the string', () => {
+    expect(() => splitByLength('hello', 7)).toThrow(RangeError);
+    expect(() => splitByLength('hello', 6)).toThrow(RangeError);
+    expect(() => splitByLength('hello', 5)).not.toThrow(RangeError);
   });
 });
 
 //6. Miscellaneous String Function
+describe('Random String Function', () => {
+  it('should generate a random string', () => {
+    expect(randomString(10)).toHaveLength(10);
+    expect(randomString(100)).toHaveLength(100);
+  });
+
+  it('should throw TypeError if input argument is not a number', () => {
+    expect(() => randomString('a')).toThrow(TypeError);
+    expect(() => randomString([])).toThrow(TypeError);
+    expect(() => randomString({})).toThrow(TypeError);
+    expect(() => randomString(null)).toThrow(TypeError);
+    expect(() => randomString(undefined)).toThrow(TypeError);
+    expect(() => randomString(NaN)).toThrow(TypeError);
+    expect(() => randomString(Infinity)).toThrow(TypeError);
+    expect(() => randomString(-Infinity)).toThrow(TypeError);
+  });
+});
+
+describe('Check for palindrome Function', () => {
+  it('should check if a string is a palindrome', () => {
+    expect(isPalindrome('racecar')).toBe(true);
+    expect(isPalindrome('hello')).toBe(false);
+    expect(isPalindrome('a')).toBe(true);
+  });
+
+  it('should throw TypeError if input argument is not a string', () => {
+    expect(() => isPalindrome()).toThrow(TypeError);
+    expect(() => isPalindrome(1)).toThrow(TypeError);
+    expect(() => isPalindrome('')).toThrow(TypeError);
+    expect(() => isPalindrome(null)).toThrow(TypeError);
+    expect(() => isPalindrome(undefined)).toThrow(TypeError);
+  });
+});
+
+describe('Remove Whitespace Function', () => {
+  it('should remove whitespace from a string', () => {
+    expect(removeWhitespace('hello world')).toBe('helloworld');
+    expect(removeWhitespace('  hello   world  ')).toBe('helloworld');
+    expect(removeWhitespace('hello')).toBe('hello');
+  });
+
+  it('should throw TypeError if input argument is not a string', () => {
+    expect(() => removeWhitespace()).toThrow(TypeError);
+    expect(() => removeWhitespace(1)).toThrow(TypeError);
+    expect(() => removeWhitespace('')).toThrow(TypeError);
+    expect(() => removeWhitespace(null)).toThrow(TypeError);
+    expect(() => removeWhitespace(undefined)).toThrow(TypeError);
+  });
+});
+
 describe('maskString Function', () => {
   it('should mask the entire string with default options', () => {
     expect(maskString('Hello, World!')).toBe('*************');
@@ -496,5 +570,51 @@ describe('StringMutator Class', () => {
         ofPattern: 12 as unknown as string,
       })
     ).toThrow(TypeError);
+  });
+  it('shoult split a string to words ', () => {
+    expect(new StringMutator('hello world').splitWords()).toEqual([
+      'hello',
+      'world',
+    ]);
+    expect(new StringMutator('  hello   world  ').splitWords()).toEqual([
+      'hello',
+      'world',
+    ]);
+    expect(new StringMutator('hello').splitWords()).toEqual(['hello']);
+    expect(new StringMutator('').splitWords()).toEqual([]);
+    expect(() => new StringMutator().splitWords()).toThrow(TypeError);
+    expect(new StringMutator('a').splitWords()).toEqual(['a']);
+  });
+
+  it('should split a string at the specified length', () => {
+    expect(new StringMutator('abc').splitByLength(2)).toEqual(['ab', 'c']);
+    expect(new StringMutator('abc').splitByLength(3)).toEqual(['abc']);
+    expect(() => new StringMutator('abc').splitByLength(4)).toThrow(RangeError);
+    expect(() => new StringMutator().splitByLength(2)).toThrow(TypeError);
+    expect(() => new StringMutator('abc').splitByLength(0)).toThrow(TypeError);
+    expect(() => new StringMutator('abc').splitByLength(-1)).toThrow(TypeError);
+  });
+
+  it('should generate a random string', () => {
+    expect(new StringMutator().randomString(10)).toHaveLength(10);
+    expect(() => new StringMutator().randomString(0)).toThrow(TypeError);
+    expect(() => new StringMutator().randomString(-1)).toThrow(TypeError);
+  });
+
+  it('should check if a string is a palindrome', () => {
+    expect(new StringMutator('racecar').isPalindrome()).toBe(true);
+    expect(new StringMutator('hello').isPalindrome()).toBe(false);
+    expect(() => new StringMutator().isPalindrome()).toThrow(TypeError);
+  });
+
+  it('should remove all whitespace characters from a string', () => {
+    expect(new StringMutator('  abc  ').removeWhitespace()).toBe('abc');
+    expect(() => new StringMutator().removeWhitespace()).toThrow(TypeError);
+  });
+
+  it('should mask a string', () => {
+    expect(new StringMutator('abc').maskString('*')).toBe('***');
+    expect(new StringMutator('abc').maskString('*')).toBe('***');
+    expect(() => new StringMutator().maskString('*')).toThrow(TypeError);
   });
 });
